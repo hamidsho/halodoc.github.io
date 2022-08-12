@@ -104,9 +104,8 @@
 <div class="row">    
     <div class="col-25" id = "heading">    
       <label for="feed_back">
-          <h6 id = "title">We love to hear your feedback and suggestions! 😊<br>
+          <h6 id = "title">We need some information to create a ticket for your complaint. <br>
 
-          Please leave your message here:
           
           </h6></label>    
     </div>    
@@ -115,20 +114,10 @@
 <textarea id="feedback" class="w-75" name="text" cols="30" rows="4" style="resize: none; border: 2px solid rgb(25, 23, 26);height:200px">Feedback here...</textarea>
 </div>
 </div>
-<div class="hide" id="dropdown" style="font-size: 14px;">
-<p>Please select your reason:</p>
-<input type="radio" id="F1" name="reason" onclick="triggerText('F1')" value="The agent need to be more helpful">
-<label for="The agent need to be more helpful">The agent need to be more helpful</label><br>
-<input type="radio" id="F2" name="reason" onclick="triggerText('F2')" value="The agent Need to improve the product knowledge">
-<label for="The agent Need to improve the product knowledge">The agent needs to improve the product knowledge</label><br>
-<input type="radio" id="F3" name="reason" onclick="triggerText('F3')" value="Improve the resolution time">
-<label for="Improve the resolution time">Improve the resolution time</label><br>
-<input type="radio" id="F4" name="reason" onclick="triggerText('F4')" value="Improve the reply time">
-<label for="Improve the reply time">Improve the reply time</label><br>
-<input type="radio" id="F5" name="reason" onclick="triggerText('F5')" value="Disagree with the policy">
-<label for="Disagree with the policy">Disagree with the policy</label><br>
-<input type="radio" id="F6" name="reason" onclick="triggerText('F6')" value="Other Feedback">
-<label for="Other Feedback">Other feedback</label><br>
+<div class="show" style="font-size: 14px;">
+  <label for="name">Name (4 to 8 characters):</label>
+<input type="text" id="name" name="name" required
+       minlength="4" maxlength="8" size="10">
 </div>
 <div></div>
 <div id="submitBtn" >
