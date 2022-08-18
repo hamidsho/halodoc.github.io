@@ -1,152 +1,200 @@
-
 <Html>
-    <head> 
-    <title>
-    
-    </title>
-    </head>
-    <body style="background-color:#E0004D; ">
-      <script>
-    function myFunction(){
-    var canvas = document.getElementById("fname").value;
-    var canvas1 = document.getElementById("lname").value;
-    var canvas2 = document.getElementById("ph").value;
-    var canvas3 = document.getElementById("email").value;
-    var canvas4 = document.getElementById("comname").value;
-    
-    //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
-    
-      window.parent.postMessage(
-            JSON.stringify({
-                event_code: "ym-client-event",
-                data: ({
-                    event: {
-                        code: "data",
-                        data: {
-                            value: [canvas1,canvas2,canvas3,canvas4]
-                              },
-                            },
-                      }),
-                 }),
-            "*"
-        );
-     console.log(JSON.stringify({
-                event_code: "ym-client-event",
-                data: ({
-                    event: {
-                        code: "data",
-                        data: {
-                            value: [canvas1,canvas2,canvas3,canvas4]
-                              },
-                            },
-                      }),
-                 }))
-    };
-    
-    
-    </script>  
-    
-    
-    <style>
-    .tacbox {
-      display:block;
-      padding: 2em;
-      margin: 1em;
-      border: 10px solid #ddd;
-      background-color: #eee;
-      max-width: 200px;
+
+<head>
+  <title>
+
+  </title>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+<body style="background-color:#EEEEEE; ">
+  <style>
+    body {
+      font-family: 'Inter';
     }
-    input[type=text] {
-      border: none;
-      border-bottom: 2px solid green;
-    -webkit-border-radius: 10px;
-        -moz-border-radius: 10px;
-        border-radius: 5px;
-        border: 1px solid #848484;
-        outline:0;
-        height:25px;
-        width: 275px;
-    }
-    input[type=text]:focus {
-      background-color: lightblue;
-    }
-    
+
     input {
       height: 2em;
       width: 20em;
       vertical-align: middle;
     }
-    
-    #tnc1{
-      color: Blue;
-    margin-left:-7em;
-    padding: em;
-    font-size: 16px;
-    float:
+
+    label {
+      color: black;
     }
-    #tnc{
-      color: Blue;
-    
+
+    p {
+      text-align: justify
     }
-    
-    label{
-      color: white
+
+    .container {
+      width: 300px;
+      background-color: #EEEEEE;
+      font-size: 12px;
+      text-align: left;
     }
-    p{
-      text-align:justify
-    }
-    #checkbox{
-      margin-top: 1em;
-    margin-left:-10.6em;
-    }
-    
-    .textbox {
-        -webkit-border-radius: 5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-        border: 1px solid #848484;
-        outline:0;
-        height:25px;
-        width: 275px;
-     }
-    .button {
-      display: inline-block;
-      padding: 15px 25px;
-      font-size: 15px;
-      cursor: pointer;
-      text-align: center;
-      text-decoration: none;
-      outline: none;
-      color: #fff;
-      background-color: #4CAF50;
+
+    .input {
+      margin: 10px 0px;
+      padding: 20px 10px;
       border: none;
-      border-radius: 15px;
-      box-shadow: 0 9px #848484;
+      border: none;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+      border: 1px solid #EEEEEE;
+      outline: 0;
+      height: 25px;
+      width: 275px;
+    }
+
+    .input:focus {
+      border: 1px solid #DD0150;
+    }
+
+    .submit {
+      background-color: #DD0150;
+      padding: 15px 15px 15px 15px;
+      width: 20em;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      color: white;
+      height: 45px;
+    }
+
+    .submit:hover {
+      background-color: #f74586;
     }
     
-    .button:hover {background-color: #3e8e41}
-    
-    .button:active {
-      background-color: #3e8e41;
-      box-shadow: 0 5px #666;
-      transform: translateY(4px);
+    .result {
+      font-weight: bold;
+      margin: 10px 0px 20px;
     }
-    </style>
-    <center>
+  </style>
+  <center>
+
+
+    <div class="container">
+      <label id="header"></label> <br>
+      <br>
+
+      <form>
+        <label id="lmobile"></label> <Br>
+        <input class="input" id="mobile" type="tel"
+          pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
+          name="mobile" size="15" />
+        <div id="rmobile" class="result"></div>
         
-     
-    
-        <label>We need some information to create a ticket for your complaint. </label>  <Br>
-    <br>
-    <form>
-    
-    <label> Registered Mobile Number </label>  <Br> 
-    <input id ="fname" type="text" name="firstname" size="15"/> <br> <br>
-    <label> Active Email ID: </label> <Br>    
-    <input id ="lname" type="text" name="lastname" size="15"/> <br> <br>
-    <label>Item(s) Too Close to Expiry::</label><Br> 
-    <input id ="ph" type="text" name="country code"  value="" size="2"/> 
-    <br><br>
-    
-    </center>
-    
+        
+        <label id="lemail"></label> <Br>
+        <input class="input" id="email" type="email" name="email" size="15" />
+        <div id="remail" class="result"></div>
+        
+        
+        <label id="lcontext"></label><br>
+        <input class="input" id="context" type="text" name="context" value="" size="2" />
+        <div id="rcontext" class="result"></div>
+        
+        
+        <input type="hidden" id="language" name="language" value="id"/>
+        <input type="hidden" id="vcontext" name="lcontext" value=""/>
+        <button id="submit" class="submit"></button>
+      </form>
+
+    </div>
+
+
+  </center>
+  <script type="text/javascript">
+
+    // $(document).ready(function () {
+    let params = new URLSearchParams(window.location.search)
+    // console.log(params.get('language'))
+    var lcontext = params.get('lcontext')
+    var language = params.get('language')
+    var mobile = params.get('mobile')
+    var email = params.get('email')
+    var context = params.get('context')
+
+    console.log({ context, language });
+    document.getElementById('lcontext').innerHTML = lcontext;
+    let x = document.getElementById('vcontext');
+    x.setAttribute("value", lcontext);
+    if (language == 'id') {
+      document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
+      document.getElementById('email').placeholder = 'Email aktif';
+      document.getElementById('header').innerHTML = 'Silahkan berikan informasi berikut dan tim CS kami<br>akan segera menghubungimu kembali:';
+      document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
+      document.getElementById('lemail').innerHTML = 'Email';
+      document.getElementById('submit').innerHTML = 'Kirim Tiket';
+      let x = document.getElementById('language');
+      x.setAttribute("value", "id");
+    } else {
+      document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
+      document.getElementById('email').placeholder = 'Enter your active email ID';
+      document.getElementById('header').innerHTML = 'We need some information to create a ticket for<br>your complaint. First, share your:';
+      document.getElementById('lmobile').innerHTML = 'Mobile Number';
+      document.getElementById('lemail').innerHTML = 'Email';
+      document.getElementById('submit').innerHTML = 'Confirm';
+      let x = document.getElementById('language');
+      x.setAttribute("value", "en");
+    }
+
+    if (mobile && email && context) {
+      let m = document.getElementById('mobile');
+      let e = document.getElementById('email');
+      let c = document.getElementById('context');
+      let s = document.getElementById('submit');
+      m.setAttribute("type", "hidden");
+      e.setAttribute("type", "hidden");
+      c.setAttribute("type", "hidden");
+      s.style.visibility = "hidden";
+      document.getElementById('rmobile').innerHTML = mobile;
+      document.getElementById('remail').innerHTML = email;
+      document.getElementById('rcontext').innerHTML = context;
+    }
+
+
+
+
+    // });
+    function myFunction() {
+      var mobile = document.getElementById("mobile").value;
+      var email = document.getElementById("email").value;
+      var context = document.getElementById("context").value;
+
+      //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
+      window.parent.postMessage(
+        JSON.stringify({
+          event_code: "ym-client-event",
+          data: ({
+            event: {
+              code: "webview-value",
+              data: {
+                value: { mobile, email, context }
+              },
+            },
+          }),
+        }),
+        "*"
+      );
+      console.log(JSON.stringify({
+        event_code: "ym-client-event",
+        data: ({
+          event: {
+            code: "webview-value",
+            data: {
+              value: { mobile, email, context }
+            },
+          },
+        }),
+      }))
+    };
+
+    document.getElementById("submit").addEventListener("click", myFunction);
+
+
+  </script>
+</body>
