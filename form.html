@@ -28,15 +28,15 @@
     }
 
     .container {
-      width: 300px;
+      width: 250px;
       background-color: #EEEEEE;
       font-size: 12px;
       text-align: left;
     }
 
     .input {
-      margin: 10px 0px;
-      padding: 20px 10px;
+      margin: 5px 0px;
+      padding: 15px 10px;
       border: none;
       border: none;
       -webkit-border-radius: 10px;
@@ -45,7 +45,8 @@
       border: 1px solid #EEEEEE;
       outline: 0;
       height: 25px;
-      width: 200px;
+      width: 250px;
+      font-size: 12px;
     }
 
     .input:focus {
@@ -55,7 +56,7 @@
     .submit {
       background-color: #DD0150;
       padding: 15px 15px 15px 15px;
-      width: 200px;
+      width: 250px;
       border-radius: 5px;
       font-size: 14px;
       font-weight: bold;
@@ -125,7 +126,7 @@
     if (language == 'id') {
       document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
       document.getElementById('email').placeholder = 'Email aktif';
-      document.getElementById('header').innerHTML = 'Silahkan berikan informasi berikut dan tim CS kami<br>akan segera menghubungimu kembali:';
+      document.getElementById('header').innerHTML = 'Silahkan berikan informasi berikut dan tim CS kami akan segera menghubungimu kembali:';
       document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
       document.getElementById('lemail').innerHTML = 'Email';
       document.getElementById('submit').innerHTML = 'Kirim Tiket';
@@ -134,7 +135,7 @@
     } else {
       document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
       document.getElementById('email').placeholder = 'Enter your active email ID';
-      document.getElementById('header').innerHTML = 'We need some information to create a ticket for<br>your complaint. First, share your:';
+      document.getElementById('header').innerHTML = 'We need some information to create a ticket for your complaint. First, share your:';
       document.getElementById('lmobile').innerHTML = 'Mobile Number';
       document.getElementById('lemail').innerHTML = 'Email';
       document.getElementById('submit').innerHTML = 'Confirm';
