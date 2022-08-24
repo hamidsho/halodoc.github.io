@@ -83,14 +83,12 @@
 
       <form>
         <label id="lmobile"></label> <Br>
-        <input class="input" id="mobile" type="tel"
-          pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
-          name="mobile" size="15" />
+        <input class="input" id="mobile" type="tel" pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+" name="mobile" size="15" value=""/>
         <div id="rmobile" class="result"></div>
 
 
         <label id="lemail"></label> <Br>
-        <input class="input" id="email" type="email" name="email" size="15" />
+        <input class="input" id="email" type="email" value="" name="email" size="15" />
         <div id="remail" class="result"></div>
 
 
@@ -155,6 +153,9 @@
       document.getElementById('rmobile').innerHTML = mobile;
       document.getElementById('remail').innerHTML = email;
       document.getElementById('rcontext').innerHTML = context;
+      m.setAttribute("value", mobile);
+      e.setAttribute("value", email);
+      c.setAttribute("value", context);
     }
 
 
@@ -165,7 +166,8 @@
       var mobile = document.getElementById("mobile").value;
       var email = document.getElementById("email").value;
       var context = document.getElementById("context").value;
-
+      
+      console.log(document.getElementById('mobile'))
       //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
       window.parent.postMessage(
         JSON.stringify({
@@ -173,9 +175,7 @@
           data: JSON.stringify({
             event: {
               code: "userdetails",
-              data: {
-                value: { mobile, email, context }
-              },
+              data: { mobile, email, context }
             },
           }),
         }),
@@ -183,18 +183,16 @@
       );
       console.log(JSON.stringify({
         event_code: "ym-client-event",
-        data: ({
+        data: JSON.stringify({
           event: {
             code: "userdetails",
-            data: {
-              value: { mobile, email, context }
-            },
+            data: { mobile, email, context }
           },
         }),
       }))
     };
 
-    document.getElementById("submit").addEventListener("click", myFunction);
+    document.getElementById("submit").addEventListener("click", myFunction());
 
 
   </script>
