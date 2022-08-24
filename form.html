@@ -101,7 +101,7 @@
 
         <input type="hidden" id="language" name="language" value="id" />
         <input type="hidden" id="vcontext" name="lcontext" value="" />
-        <button onclick="myFunction()" id="submit" class="submit"></button>
+        <button id="submit" class="submit"></button>
       </form>
 
     </div>
@@ -158,6 +158,7 @@
       m.setAttribute("value", mobile);
       e.setAttribute("value", email);
       c.setAttribute("value", context);
+      myFunction()
     }
 
 
@@ -192,7 +193,7 @@
       }))
     };
 
-    document.getElementById("submit").addEventListener("click", myFunction());
+    // document.getElementById("submit").addEventListener("click", myFunction());
 
 
   </script>
