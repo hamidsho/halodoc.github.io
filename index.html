@@ -106,17 +106,10 @@
   
       // $(document).ready(function () {
       let params = new URLSearchParams(window.location.search)
-      // console.log(params.get('language'))
-      var lcontext = params.get('lcontext')
       var language = params.get('language')
       var mobile = params.get('mobile')
       var email = params.get('email')
-      var context = params.get('context')
-  
-      console.log({ context, language });
-      document.getElementById('lcontext').innerHTML = lcontext;
-      let x = document.getElementById('vcontext');
-      x.setAttribute("value", lcontext);
+
       if (language == 'id') {
         document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
         document.getElementById('email').placeholder = 'Email aktif';
