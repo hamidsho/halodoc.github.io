@@ -68,7 +68,7 @@
     .submit:hover {
       background-color: #f74586;
     }
-    
+
     .result {
       font-weight: bold;
       margin: 10px 0px 20px;
@@ -87,20 +87,20 @@
           pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
           name="mobile" size="15" />
         <div id="rmobile" class="result"></div>
-        
-        
+
+
         <label id="lemail"></label> <Br>
         <input class="input" id="email" type="email" name="email" size="15" />
         <div id="remail" class="result"></div>
-        
-        
+
+
         <label id="lcontext"></label><br>
         <input class="input" id="context" type="text" name="context" value="" size="2" />
         <div id="rcontext" class="result"></div>
-        
-        
-        <input type="hidden" id="language" name="language" value="id"/>
-        <input type="hidden" id="vcontext" name="lcontext" value=""/>
+
+
+        <input type="hidden" id="language" name="language" value="id" />
+        <input type="hidden" id="vcontext" name="lcontext" value="" />
         <button id="submit" class="submit"></button>
       </form>
 
@@ -170,9 +170,9 @@
       window.parent.postMessage(
         JSON.stringify({
           event_code: "ym-client-event",
-          data: ({
+          data: JSON.stringify({
             event: {
-              code: "webview-value",
+              code: "userdetails",
               data: {
                 value: { mobile, email, context }
               },
@@ -185,7 +185,7 @@
         event_code: "ym-client-event",
         data: ({
           event: {
-            code: "webview-value",
+            code: "userdetails",
             data: {
               value: { mobile, email, context }
             },
