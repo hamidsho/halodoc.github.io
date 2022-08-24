@@ -83,7 +83,9 @@
 
       <form>
         <label id="lmobile"></label> <Br>
-        <input class="input" id="mobile" type="tel" pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+" name="mobile" size="15" value=""/>
+        <input class="input" id="mobile" type="tel"
+          pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
+          name="mobile" size="15" value="" />
         <div id="rmobile" class="result"></div>
 
 
@@ -99,7 +101,7 @@
 
         <input type="hidden" id="language" name="language" value="id" />
         <input type="hidden" id="vcontext" name="lcontext" value="" />
-        <button id="submit" class="submit"></button>
+        <button onclick="myFunction()" id="submit" class="submit"></button>
       </form>
 
     </div>
@@ -166,11 +168,9 @@
       var mobile = document.getElementById("mobile").value;
       var email = document.getElementById("email").value;
       var context = document.getElementById("context").value;
-      
-      console.log(document.getElementById('mobile'))
       //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
-      window.parent.postMessage(
-        JSON.stringify({
+      if (mobile && email && context) {
+        window.parent.postMessage(JSON.stringify({
           event_code: "ym-client-event",
           data: JSON.stringify({
             event: {
@@ -178,9 +178,9 @@
               data: { mobile, email, context }
             },
           }),
-        }),
-        "*"
-      );
+        }), "*");
+      }
+
       console.log(JSON.stringify({
         event_code: "ym-client-event",
         data: JSON.stringify({
