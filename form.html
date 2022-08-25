@@ -170,8 +170,8 @@
       var email = document.getElementById("email").value;
       var context = document.getElementById("context").value;
       //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
+      let data = btoa(JSON.stringify({ mobile, email, context }))
       if (mobile && email && context) {
-        let data = btoa(JSON.stringify({ mobile, email, context }))
         window.parent.postMessage(JSON.stringify({
           event_code: "ym-client-event",
           data: JSON.stringify({
