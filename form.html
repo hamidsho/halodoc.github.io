@@ -176,7 +176,7 @@
           data: btoa(JSON.stringify({
             event: {
               code: "userdetails",
-              data: btoa({ mobile, email, context })
+              data: { mobile, email, context }
             },
           })),
         }), "*");
@@ -187,7 +187,7 @@
         data: btoa(JSON.stringify({
           event: {
             code: "userdetails",
-            data: btoa({ mobile, email, context })
+            data: { mobile, email, context }
           },
         })),
       }))
