@@ -173,23 +173,23 @@
       if (mobile && email && context) {
         window.parent.postMessage(JSON.stringify({
           event_code: "ym-client-event",
-          data: JSON.stringify({
+          data: btoa(JSON.stringify({
             event: {
               code: "userdetails",
               data: btoa({ mobile, email, context })
             },
-          }),
+          })),
         }), "*");
       }
 
       console.log(JSON.stringify({
         event_code: "ym-client-event",
-        data: JSON.stringify({
+        data: btoa(JSON.stringify({
           event: {
             code: "userdetails",
             data: btoa({ mobile, email, context })
           },
-        }),
+        })),
       }))
     };
 
