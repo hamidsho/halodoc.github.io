@@ -127,7 +127,7 @@
     x.setAttribute("value", lcontext);
     if (parseInt(mincontext)) {
       y.setAttribute("pattern", `.{${mincontext},}`);
-      language == "id" ? y.setAttribute("title", `Minimum ${mincontext} karakter`) : y.setAttribute("title", `${mincontext} characters minimum`)
+      language == "id" ? y.setAttribute("oninvalid", `this.setCustomValidity('Minimum ${mincontext} karakter')`) : y.setAttribute("oninvalid", `this.setCustomValidity('${mincontext} characters minimum')`)
     } 
     
     if (language == 'id') {
