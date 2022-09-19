@@ -95,7 +95,7 @@
 
 
         <label id="lcontext"></label><br>
-        <input class="input" id="context" type="text" name="context" value="" required/>
+        <input class="input" id="context" type="text" name="context" value=""/>
         <div id="rcontext" class="result"></div>
 
 
@@ -119,15 +119,16 @@
     var email = params.get('email')
     var context = params.get('context')
     var mincontext = params.get('mincontext')
-
+   
     console.log({ context, language });
     document.getElementById('lcontext').innerHTML = lcontext;
     let x = document.getElementById('vcontext');
     let y = document.getElementById('context');
     x.setAttribute("value", lcontext);
     if (parseInt(mincontext)) {
-      y.setAttribute("pattern", `.{${mincontext},}`);
+      y.setAttribute("minlength", `${mincontext}`);
       language == "id" ? y.setAttribute("oninvalid", `this.setCustomValidity('Minimum ${mincontext} karakter')`) : y.setAttribute("oninvalid", `this.setCustomValidity('${mincontext} characters minimum')`)
+      y.setAttribute("oninput", "setCustomValidity('')");
     } 
     
     if (language == 'id') {
@@ -176,6 +177,7 @@
       var mobile = document.getElementById("mobile").value;
       var email = document.getElementById("email").value;
       var context = document.getElementById("context").value;
+      console.log({ mobile, email, context })
       //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
       let data = btoa(JSON.stringify({ mobile, email, context }))
       if (mobile && email && context) {
