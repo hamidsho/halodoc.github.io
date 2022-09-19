@@ -95,12 +95,12 @@
 
 
         <label id="lcontext"></label><br>
-        <input class="input" id="context" type="text" name="context" value="" size="2" />
+        <input class="input" id="context" type="text" name="context" value="" required/>
         <div id="rcontext" class="result"></div>
 
 
         <input type="hidden" id="language" name="language" value="id" />
-        <input type="hidden" id="vcontext" name="lcontext" value="" />
+        <input type="hidden" id="vcontext" name="lcontext" value=""/>
         <button id="submit" class="submit"></button>
       </form>
 
@@ -118,11 +118,18 @@
     var mobile = params.get('mobile')
     var email = params.get('email')
     var context = params.get('context')
+    var mincontext = params.get('mincontext')
 
     console.log({ context, language });
     document.getElementById('lcontext').innerHTML = lcontext;
     let x = document.getElementById('vcontext');
+    let y = document.getElementById('context');
     x.setAttribute("value", lcontext);
+    if (parseInt(mincontext)) {
+      y.setAttribute("pattern", `.{${mincontext},}`);
+      language == "id" ? y.setAttribute("title", "Minimum 25 karakter") : y.setAttribute("title", "25 characters minimum")
+    } 
+    
     if (language == 'id') {
       document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
       document.getElementById('email').placeholder = 'Email aktif';
