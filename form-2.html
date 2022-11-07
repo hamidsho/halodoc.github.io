@@ -100,7 +100,7 @@
 
 
                 <label id="lamount"></label><br>
-                <input class="input" id="amount" type="number" name="amount" value="" />
+                <input class="input" id="amount" type="number" name="amount" min="0" value="0" />
                 <div id="ramount" class="result"></div>
 
 
@@ -196,9 +196,9 @@
             var email = document.getElementById("email").value;
             var context = document.getElementById("context").value;
             var amount = document.getElementById("amount").value;
-            console.log({ mobile, email, context, amount })
+            console.log({ mobile, email, context, amount: formatRupiah(amount) })
             //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
-            let data = btoa(JSON.stringify({ mobile, email, context, amount }))
+            let data = btoa(JSON.stringify({ mobile, email, context, amount: formatRupiah(amount) }))
             if (mobile && email && context) {
                 window.parent.postMessage(JSON.stringify({
                     event_code: "ym-client-event",
