@@ -49,7 +49,24 @@
             font-size: 12px;
         }
 
+        .custom-select {
+            margin: 5px 0px; 
+            padding: 5px 10px;
+            /* border: none; */
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            /* outline: 0; */
+            height: 30px;
+            width: 220px;
+            font-size: 12px;
+            font-family: 'Inter';
+        }
+
         .input:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .custom-select:focus {
             border: 1px solid #DD0150;
         }
 
@@ -73,6 +90,12 @@
             font-weight: bold;
             margin: 10px 0px 20px;
         }
+
+        select option:checked {
+            background-color: #DD0150 !important;
+            color: white !important;
+        }
+        
     </style>
     <center>
 
@@ -95,7 +118,13 @@
 
 
                 <label id="lcontext"></label><br>
-                <input class="input" id="context" type="text" name="context" value="" />
+                <select class="custom-select" id="context" name="context">
+                    <option class="select-opt" id="halodocbalance" value=""></option>
+                    <option class="select-opt" value="Virtual Account">Virtual Account</option>
+                    <option class="select-opt" value="Gopay">Gopay</option>
+                    <option class="select-opt" value="LinkAja">LinkAja</option>
+                    <option class="select-opt" id="creditcard" value=""></option>
+                </select>
                 <div id="rcontext" class="result"></div>
 
 
@@ -116,11 +145,6 @@
     </center>
     <script type="text/javascript">
 
-        const formatRupiah = (money) => {
-            return new Intl.NumberFormat('id-ID',
-                { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }
-            ).format(money);
-        }
         // $(document).ready(function () {
         let params = new URLSearchParams(window.location.search)
         // console.log(params.get('language'))
@@ -138,14 +162,14 @@
         document.getElementById('lamount').innerHTML = lamount;
         let x = document.getElementById('vcontext');
         let z = document.getElementById('vamount');
-        let y = document.getElementById('context');
+        // let y = document.getElementById('context');
         x.setAttribute("value", lcontext);
         z.setAttribute("value", lamount);
-        if (parseInt(mincontext)) {
-            y.setAttribute("minlength", `${mincontext}`);
-            language == "id" ? y.setAttribute("oninvalid", `this.setCustomValidity('Minimum ${mincontext} karakter')`) : y.setAttribute("oninvalid", `this.setCustomValidity('${mincontext} characters minimum')`)
-            y.setAttribute("oninput", "setCustomValidity('')");
-        }
+        // if (parseInt(mincontext)) {
+        //     y.setAttribute("minlength", `${mincontext}`);
+        //     language == "id" ? y.setAttribute("oninvalid", `this.setCustomValidity('Minimum ${mincontext} karakter')`) : y.setAttribute("oninvalid", `this.setCustomValidity('${mincontext} characters minimum')`)
+        //     y.setAttribute("oninput", "setCustomValidity('')");
+        // }
 
         if (language == 'id') {
             document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
@@ -154,6 +178,10 @@
             document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
             document.getElementById('lemail').innerHTML = 'Email';
             document.getElementById('submit').innerHTML = 'Kirim Tiket';
+            document.getElementById('creditcard').innerHTML = 'Kartu Kredit / Debit'
+            document.getElementById('halodocbalance').innerHTML = 'Saldo Halodoc'
+            document.getElementById('creditcard').setAttribute("value", "Kartu Kredit / Debit")
+            document.getElementById('halodocbalance').setAttribute("value", "Saldo Halodoc")
             let x = document.getElementById('language');
             x.setAttribute("value", "id");
         } else {
@@ -163,9 +191,15 @@
             document.getElementById('lmobile').innerHTML = 'Mobile Number';
             document.getElementById('lemail').innerHTML = 'Email';
             document.getElementById('submit').innerHTML = 'Confirm';
+            document.getElementById('creditcard').innerHTML = 'Credit card / Debit'
+            document.getElementById('halodocbalance').innerHTML = 'Halodoc Balance'
+            document.getElementById('creditcard').setAttribute("value", "Credit card / Debit")
+            document.getElementById('halodocbalance').setAttribute("value", "Halodoc Balance")
             let x = document.getElementById('language');
             x.setAttribute("value", "en");
         }
+
+        document.getElementById('halodocbalance').selected = true;
 
         if (mobile && email && context && amount) {
             let m = document.getElementById('mobile');
@@ -175,7 +209,8 @@
             let s = document.getElementById('submit');
             m.setAttribute("type", "hidden");
             e.setAttribute("type", "hidden");
-            c.setAttribute("type", "hidden");
+            // c.setAttribute("type", "hidden");
+            c.hidden = true;
             a.setAttribute("type", "hidden");
             s.style.visibility = "hidden";
             document.getElementById('rmobile').innerHTML = mobile;
