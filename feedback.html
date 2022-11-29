@@ -196,14 +196,14 @@
     }
 
     if (language == 'id') {
-      document.getElementById('rating-desc').innerHTML = 'Bagaimana kamu menilai pelayanan CS hari ini?';
-      document.getElementById('comment-desc').innerHTML = 'Punya komentar atau saran? Sampaikan pada kolom di bawah.';
+      document.getElementById('rating-desc').innerHTML = rating ? 'Rating yang diberikan:' : 'Bagaimana kamu menilai pelayanan CS hari ini?';
+      document.getElementById('comment-desc').innerHTML = rating ? 'Komentar yang diberikan:' : 'Punya komentar atau saran? Sampaikan pada kolom di bawah.';
       document.getElementById('send-data').innerHTML = 'Kirim';
       let x = document.getElementById('language');
       x.setAttribute("value", "id");
     } else {
-      document.getElementById('rating-desc').innerHTML = 'How would you rate our CS agent’s service today?';
-      document.getElementById('comment-desc').innerHTML = 'Any comments or suggestions? Let us know in the field below.';
+      document.getElementById('rating-desc').innerHTML = rating ? 'Your rating:' : 'How would you rate our CS agent’s service today?';
+      document.getElementById('comment-desc').innerHTML = rating ? 'Your comments:' : 'Any comments or suggestions? Let us know in the field below.';
       document.getElementById('send-data').innerHTML = 'Send';
       let x = document.getElementById('language');
       x.setAttribute("value", "en");
