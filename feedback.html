@@ -1,0 +1,252 @@
+<Html>
+
+<head>
+  <title>
+
+  </title>
+  <style>
+    body {
+      font-family: 'Inter';
+    }
+
+    #header {
+      display: flex;
+      justify-content: flex-start;
+      width: 220px;
+    }
+
+    .rating-desc {
+      margin-top: 15px;
+      font-size: 12px;
+      width: 220px;
+      text-align: left;
+    }
+
+    .comment-desc {
+      margin-top: 10px;
+      font-size: 12px;
+      width: 220px;
+      text-align: left;
+    }
+
+    /* @import url(netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css); */
+
+    fieldset {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: left;
+      flex-direction: row-reverse;
+    }
+
+    /****** Style Star Rating Widget *****/
+
+    .rating {
+      border: none;
+      width: 220px;
+    }
+
+    .rating>input {
+      display: none;
+    }
+
+    .rating>label:before {
+      margin: 5px 10px 5px 0px;
+      font-size: 1.3em;
+      font-family: FontAwesome;
+      display: inline-block;
+      content: "\f005";
+    }
+
+    .rating>.half:before {
+      content: "\f089";
+      position: absolute;
+    }
+
+    .rating>label {
+      color: rgb(194, 194, 194);
+      float: right;
+    }
+
+    /***** CSS Magic to Highlight Stars on Hover *****/
+
+    .rating>input:checked~label,
+    /* show gold star when clicked */
+    .rating:not(:checked)>label:hover,
+    /* hover current star */
+    .rating:not(:checked)>label:hover~label {
+      color: #DD0150;
+    }
+
+    /* hover previous stars in list */
+
+    /* .rating>input:checked+label:hover, */
+    /* hover current star when changing rating */
+    /* .rating>input:checked~label:hover */
+    /* .rating>label:hover~input:checked~label */
+    /* lighten current selection */
+    /* .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }  */
+
+    .comment {
+      display: block;
+      width: 220px;
+      margin: 5px 0px 10px 0px;
+      padding: 10px 10px;
+      border: none;
+      border: none;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+      border: 1px solid #EEEEEE;
+      outline: 0;
+      font-size: 12px;
+      resize: none;
+    }
+
+    .comment:focus {
+      border: 1px solid #DD0150;
+    }
+
+    .rcomment {
+      display: block;
+      width: 220px;
+      text-align: left;
+      font-size: 12px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+
+    .send-data {
+      background-color: #DD0150;
+      padding: 15px 15px 15px 15px;
+      width: 220px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      color: white;
+      height: 45px;
+    }
+
+    .send-data:hover {
+      background-color: #f74586;
+    }
+
+    .no-pointer {
+      pointer-events: none;
+    }
+  </style>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+<link href='https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css' rel='stylesheet'>
+
+<body style="background-color:#EEEEEE; ">
+  <center>
+
+    <div class="container">
+      <label id="header">Submit Feedback</label>
+      <div class="rating-desc" id="rating-desc"></div>
+      <form>
+        <fieldset class="rating" id="ratings">
+          <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5" title=""></label>
+          <!--     <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label> -->
+          <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4" title=""></label>
+          <!--     <input type="radio" id="star1half" name="rating" value="1 and a half" /><label class="half" for="star1half" title="Meh - 1.5 stars"></label> -->
+          <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3" title=""></label>
+          <!--     <input type="radio" id="star2half" name="rating" value="2 and a half" /><label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label> -->
+          <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2" title=""></label>
+          <!--     <input type="radio" id="star3half" name="rating" value="3 and a half" /><label class="half" for="star3half" title="Meh - 3.5 stars"></label> -->
+          <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1" title=""></label>
+          <!--     <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label> -->
+        </fieldset>
+        <div class="comment-desc" id="comment-desc"></div>
+        <textarea name="comment" id="comment" class="comment" cols="1" rows="3"></textarea>
+        <div class="rcomment" id="rcomment"></div>
+        <input type="hidden" id="language" name="language" value="id" />
+        <button id="send-data" class="send-data"></button>
+      </form>
+
+    </div>
+
+  </center>
+
+  <script type="text/javascript">
+
+    // $(document).ready(function () {
+    let params = new URLSearchParams(window.location.search)
+    var language = params.get('language')
+    var rating = params.get('rating')
+    var comment = params.get('comment')
+
+    if (rating) {
+      let star = document.getElementById('star' + rating);
+      document.getElementById('comment').style.display = "none";
+      document.getElementById('rcomment').innerHTML = comment;
+      
+      document.getElementById('ratings').classList.add("no-pointer");
+      star.checked = true;
+
+      for (let i = 1; i <= 5; i++) {
+        document.getElementById('star' + i).disabled = true;
+      }
+
+    } else {
+      document.getElementById('rcomment').style.display = "none";
+    }
+
+    if (language == 'id') {
+      document.getElementById('rating-desc').innerHTML = 'Bagaimana kamu menilai pelayanan CS hari ini?';
+      document.getElementById('comment-desc').innerHTML = 'Punya komentar atau saran? Sampaikan pada kolom di bawah.';
+      document.getElementById('send-data').innerHTML = 'Kirim';
+      let x = document.getElementById('language');
+      x.setAttribute("value", "id");
+    } else {
+      document.getElementById('rating-desc').innerHTML = 'How would you rate our CS agent’s service today?';
+      document.getElementById('comment-desc').innerHTML = 'Any comments or suggestions? Let us know in the field below.';
+      document.getElementById('send-data').innerHTML = 'Send';
+      let x = document.getElementById('language');
+      x.setAttribute("value", "en");
+    }
+
+    if (rating) {
+      let sendData = document.getElementById('send-data');
+      sendData.style.visibility = "hidden";
+      myFunction({ rating, comment })
+    }
+
+
+    // });
+    function myFunction(args) {
+      //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
+      let data = btoa(JSON.stringify(args))
+      if (args.rating) {
+        window.parent.postMessage(JSON.stringify({
+          event_code: "ym-client-event",
+          data: JSON.stringify({
+            event: {
+              code: new Date().getTime().toString(),
+              data
+            },
+          }),
+        }), "*");
+
+        console.log(JSON.stringify({
+          event_code: "ym-client-event",
+          data: JSON.stringify({
+            event: {
+              code: new Date().getTime().toString(),
+              data
+            },
+          }),
+        }))
+      }
+
+
+    };
+
+      // document.getElementById("send-data").addEventListener("click", myFunction());
+
+
+  </script>
+</body>
