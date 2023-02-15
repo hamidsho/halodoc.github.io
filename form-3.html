@@ -119,14 +119,13 @@
                     name="mobile" size="15" value="" />
                 <div id="rmobile" class="result"></div>
 
-
                 <label id="lemail"></label> <Br>
                 <input class="input" id="email" type="email" value="" name="email" size="15" />
                 <div id="remail" class="result"></div>
 
-                <label id="lorderId"></label> <Br>
+                <!-- <label id="lorderId"></label> <Br> -->
                 <!-- <input class="input" id="orderId" name="orderId" value="" disabled/> -->
-                <div id="rorderId" class="result"></div>
+                <!-- <div id="rorderId" class="result"></div> -->
 
 
                 <label id="lcontext"></label><br>
@@ -151,7 +150,7 @@
         let params = new URLSearchParams(window.location.search)
         // console.log(params.get('language'))
         var lcontext = params.get('lcontext')
-        var orderId = params.get('orderId')
+        // var orderId = params.get('orderId')
         var language = params.get('language')
         var mobile = params.get('mobile')
         var email = params.get('email')
@@ -183,12 +182,12 @@
 
         let o = document.getElementById('contextOption');
         o.setAttribute("value", contextOption)
-        document.getElementById('rorderId').innerHTML = orderId;
-        document.getElementById('orderId').setAttribute("value", orderId);
+        // document.getElementById('rorderId').innerHTML = orderId;
+        // document.getElementById('orderId').setAttribute("value", orderId);
 
         if (language == 'id') {
             document.getElementById('lname').innerHTML = 'Nama'; 
-            document.getElementById('lorderId').innerHTML = 'ID Konsultasi'; 
+            // document.getElementById('lorderId').innerHTML = 'ID Konsultasi'; 
             document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
             document.getElementById('email').placeholder = 'Email aktif';
             document.getElementById('header').innerHTML = 'Silakan lengkapi informasi berikut. Tim CS kami akan segera menghubungimu';
@@ -199,7 +198,7 @@
             x.setAttribute("value", "id");
         } else {
             document.getElementById('lname').innerHTML = 'Name'; 
-            document.getElementById('lorderId').innerHTML = 'Consultation ID';
+            // document.getElementById('lorderId').innerHTML = 'Consultation ID';
             document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
             document.getElementById('email').placeholder = 'Enter your active email ID';
             document.getElementById('header').innerHTML = 'Please share the information below and our Customer Support will get back to you at the soonest';
