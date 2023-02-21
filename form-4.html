@@ -1,0 +1,282 @@
+<Html>
+
+<head>
+    <title>
+
+    </title>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+<body style="background-color:#EEEEEE; ">
+    <style>
+        body {
+            font-family: 'Inter';
+        }
+
+        input {
+            height: 2em;
+            width: 20em;
+            vertical-align: middle;
+        }
+
+        label {
+            color: black;
+        }
+
+        p {
+            text-align: justify
+        }
+
+        .container {
+            width: 220px;
+            background-color: #EEEEEE;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .input {
+            margin: 5px 0px;
+            padding: 15px 10px;
+            border: none;
+            border: none;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            outline: 0;
+            height: 25px;
+            width: 220px;
+            font-size: 12px;
+        }
+
+        .custom-select {
+            margin: 5px 0px;
+            padding: 5px 10px;
+            /* border: none; */
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            /* outline: 0; */
+            height: 30px;
+            width: 220px;
+            font-size: 12px;
+            font-family: 'Inter';
+        }
+
+        .input:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .custom-select:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .custom-select option {
+            width: 220px;
+            word-wrap: break-word;
+        }
+
+        .submit {
+            background-color: #DD0150;
+            padding: 15px 15px 15px 15px;
+            width: 220px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            color: white;
+            height: 45px;
+        }
+
+        .submit:hover {
+            background-color: #f74586;
+        }
+
+        .result {
+            font-weight: bold;
+            margin: 10px 0px 20px;
+        }
+
+        select option:checked {
+            background-color: #DD0150 !important;
+            color: white !important;
+        }
+    </style>
+    <center>
+
+
+        <div class="container">
+            <label id="header"></label> <br>
+            <br>
+
+            <form>
+                <label id="lname"></label> <Br>
+                <input class="input" id="name" name="name" value="" />
+                <div id="rname" class="result"></div>
+
+                <label id="lmobile"></label> <Br>
+                <input class="input" id="mobile" type="tel"
+                    pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
+                    name="mobile" size="15" value="" />
+                <div id="rmobile" class="result"></div>
+
+                <label id="lemail"></label> <Br>
+                <input class="input" id="email" type="email" value="" name="email" size="15" />
+                <div id="remail" class="result"></div>
+
+                <label id="lservice"></label> <Br>
+                <input class="input" id="service" value="" name="service"/>
+                <div id="rservice" class="result"></div>
+
+                <label id="lsubject"></label> <Br>
+                <input class="input" id="subject" value="" name="subject" />
+                <div id="rsubject" class="result"></div>
+
+                <label id="ltime"></label> <Br>
+                <input class="input" id="time" value="" name="time" />
+                <div id="rtime" class="result"></div>
+
+                <!-- <label id="lorderId"></label> <Br> -->
+                <!-- <input class="input" id="orderId" name="orderId" value="" disabled/> -->
+                <!-- <div id="rorderId" class="result"></div> -->
+
+
+                <!-- <label id="lcontext"></label><br>
+                <select class="custom-select" id="context" name="context">
+                </select>
+                <div id="rcontext" class="result"></div> -->
+
+                <!-- <input type="hidden" id="orderId" name="orderId" value="" /> -->
+                <input type="hidden" id="language" name="language" value="id" />
+                <!-- <input type="hidden" id="vcontext" name="lcontext" value="" />
+                <input type="hidden" id="contextOption" name="contextOption" value="" /> -->
+                <button id="submit" class="submit"></button>
+            </form>
+
+        </div>
+
+
+    </center>
+    <script type="text/javascript">
+
+        // $(document).ready(function () {
+        let params = new URLSearchParams(window.location.search)
+        // console.log(params.get('language'))
+        // var lcontext = params.get('lcontext')
+        // var orderId = params.get('orderId')
+        var language = params.get('language')
+        var mobile = params.get('mobile')
+        var email = params.get('email')
+        var name = params.get('name')
+        var service = params.get('service')
+        var subject = params.get('subject')
+        var time = params.get('time')
+
+        console.log({ language, mobile, email, name, service, subject, time  });
+        // document.getElementById('lcontext').innerHTML = lcontext;
+
+        if (language == 'id') {
+            document.getElementById('lname').innerHTML = 'Nama';
+            document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
+            document.getElementById('email').placeholder = 'Email aktif';
+            document.getElementById('header').innerHTML = 'Silakan lengkapi informasi berikut. Tim CS kami akan segera menghubungimu';
+            document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
+            document.getElementById('lemail').innerHTML = 'Email';
+            document.getElementById('lservice').innerHTML = "Layanan yang ingin dipesan";
+            document.getElementById('lsubject').innerHTML = 'Nama Dokter dan/atau RS atau Klinik yang dituju';
+            document.getElementById('ltime').innerHTML = 'Tanggal dan waktu janji yang ingin dipesan';
+            document.getElementById('submit').innerHTML = 'Kirim Tiket';
+            let x = document.getElementById('language');
+            x.setAttribute("value", "id");
+        } else {
+            document.getElementById('lname').innerHTML = 'Name';
+            document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
+            document.getElementById('email').placeholder = 'Enter your active email ID';
+            document.getElementById('header').innerHTML = 'Please share the information below and our Customer Support will get back to you at the soonest';
+            document.getElementById('lmobile').innerHTML = 'Mobile Number';
+            document.getElementById('lemail').innerHTML = 'Email';
+            document.getElementById('lservice').innerHTML = "Service you're trying to book";
+            document.getElementById('lsubject').innerHTML = 'Name of Doctor and/or Hospital or Clinic';
+            document.getElementById('ltime').innerHTML = 'Date and time of appointment';
+            document.getElementById('submit').innerHTML = 'Confirm';
+            let x = document.getElementById('language');
+            x.setAttribute("value", "en");
+        }
+
+        if (mobile && email && name) {
+            let m = document.getElementById('mobile');
+            let e = document.getElementById('email');
+            let s = document.getElementById('submit');
+            let n = document.getElementById('name');
+            let svc = document.getElementById('service');
+            let sbj = document.getElementById('subject');
+            let tm = document.getElementById('time');
+            m.setAttribute("type", "hidden");
+            e.setAttribute("type", "hidden");
+            n.setAttribute("type", "hidden");
+            svc.setAttribute("type", "hidden");
+            sbj.setAttribute("type", "hidden");
+            tm.setAttribute("type", "hidden");
+
+            document.getElementById('rname').innerHTML = name;
+            document.getElementById('rmobile').innerHTML = mobile;
+            document.getElementById('remail').innerHTML = email;
+            document.getElementById('rservice').innerHTML = service;
+            document.getElementById('rsubject').innerHTML = subject;
+            document.getElementById('rtime').innerHTML = time;
+            
+            m.setAttribute("value", mobile);
+            e.setAttribute("value", email);
+            n.setAttribute("value", name);
+            svc.setAttribute("value", service);
+            sbj.setAttribute("value", subject);
+            tm.setAttribute("value", time);
+
+            let context = [];
+            service ? context.push(service) : context = context;
+            subject ? context.push(subject) : context = context;
+            time ? context.push(time) : context = context;
+            context = context.join('<br>');
+
+            myFunction({ mobile, email, context, name });
+        }
+
+
+        // });
+        function myFunction({ mobile, email, context, name }) {
+            // var mobile = document.getElementById("mobile").value;
+            // var email = document.getElementById("email").value;
+            // var context = document.getElementById("context").value;
+            // var amount = document.getElementById("amount").value;
+            console.log({ mobile, email, context, name })
+            //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
+            let data = btoa(JSON.stringify({ mobile, email, context, name }))
+            if (mobile && email && context) {
+                window.parent.postMessage(JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: JSON.stringify({
+                        event: {
+                            code: new Date().getTime().toString(),
+                            data
+                        },
+                    }),
+                }), "*");
+
+                console.log(JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: JSON.stringify({
+                        event: {
+                            code: new Date().getTime().toString(),
+                            data
+                        },
+                    }),
+                }))
+            }
+
+
+        };
+
+            // document.getElementById("submit").addEventListener("click", myFunction());
+
+
+    </script>
+</body>
