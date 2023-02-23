@@ -123,32 +123,20 @@
                 <input class="input" id="email" type="email" value="" name="email" size="15" />
                 <div id="remail" class="result"></div>
 
-                <label id="lservice"></label> <Br>
-                <input class="input" id="service" value="" name="service"/>
-                <div id="rservice" class="result"></div>
-
-                <label id="lsubject"></label> <Br>
-                <input class="input" id="subject" value="" name="subject" />
-                <div id="rsubject" class="result"></div>
-
-                <label id="ltime"></label> <Br>
-                <input class="input" id="time" value="" name="time" />
-                <div id="rtime" class="result"></div>
-
                 <!-- <label id="lorderId"></label> <Br> -->
                 <!-- <input class="input" id="orderId" name="orderId" value="" disabled/> -->
                 <!-- <div id="rorderId" class="result"></div> -->
 
 
-                <!-- <label id="lcontext"></label><br>
+                <label id="lcontext"></label><br>
                 <select class="custom-select" id="context" name="context">
                 </select>
-                <div id="rcontext" class="result"></div> -->
+                <div id="rcontext" class="result"></div>
 
-                <!-- <input type="hidden" id="orderId" name="orderId" value="" /> -->
+                <input type="hidden" id="orderId" name="orderId" value="" />
                 <input type="hidden" id="language" name="language" value="id" />
-                <!-- <input type="hidden" id="vcontext" name="lcontext" value="" />
-                <input type="hidden" id="contextOption" name="contextOption" value="" /> -->
+                <input type="hidden" id="vcontext" name="lcontext" value="" />
+                <input type="hidden" id="contextOption" name="contextOption" value="" />
                 <button id="submit" class="submit"></button>
             </form>
 
@@ -161,83 +149,86 @@
         // $(document).ready(function () {
         let params = new URLSearchParams(window.location.search)
         // console.log(params.get('language'))
-        // var lcontext = params.get('lcontext')
+        var lcontext = params.get('lcontext')
         // var orderId = params.get('orderId')
         var language = params.get('language')
         // var mobile = params.get('mobile')
         var email = params.get('email')
         var name = params.get('name')
-        var service = params.get('service')
-        var subject = params.get('subject')
-        var time = params.get('time')
+        var context = params.get('context')
+        var mincontext = params.get('mincontext')
+        var contextOption = params.get('contextOption')
 
-        console.log({ language, email, name, service, subject, time  });
-        // document.getElementById('lcontext').innerHTML = lcontext;
+        console.log({ lcontext, orderId, language, email, name, context, mincontext, contextOption });
+        document.getElementById('lcontext').innerHTML = lcontext;
+        let x = document.getElementById('vcontext');
+        // let y = document.getElementById('context');
+        x.setAttribute("value", lcontext);
+        // if (parseInt(mincontext)) {
+        //     y.setAttribute("minlength", `${mincontext}`);
+        //     language == "id" ? y.setAttribute("oninvalid", `this.setCustomValidity('Minimum ${mincontext} karakter')`) : y.setAttribute("oninvalid", `this.setCustomValidity('${mincontext} characters minimum')`)
+        //     y.setAttribute("oninput", "setCustomValidity('')");
+        // }
+        if (contextOption) {
+            let select = document.getElementById('context');
+            contextOption.split('|').forEach(data => {
+                let opt = document.createElement('option');
+                opt.className = 'select-opt'
+                opt.value = data;
+                opt.innerHTML = data;
+                select.appendChild(opt);
+            });
+        }
+
+        let o = document.getElementById('contextOption');
+        o.setAttribute("value", contextOption)
+        // document.getElementById('rorderId').innerHTML = orderId;
+        // document.getElementById('orderId').setAttribute("value", orderId);
 
         if (language == 'id') {
-            document.getElementById('lname').innerHTML = 'Nama';
+            document.getElementById('lname').innerHTML = 'Nama'; 
+            // document.getElementById('lorderId').innerHTML = 'ID Konsultasi'; 
             // document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
             document.getElementById('email').placeholder = 'Email aktif';
             document.getElementById('header').innerHTML = 'Silakan lengkapi informasi berikut. Tim CS kami akan segera menghubungimu';
             // document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
             document.getElementById('lemail').innerHTML = 'Email';
-            document.getElementById('lservice').innerHTML = "Layanan yang ingin dipesan";
-            document.getElementById('lsubject').innerHTML = 'Nama Dokter dan/atau RS atau Klinik yang dituju';
-            document.getElementById('ltime').innerHTML = 'Tanggal dan waktu janji yang ingin dipesan';
             document.getElementById('submit').innerHTML = 'Kirim Tiket';
             let x = document.getElementById('language');
             x.setAttribute("value", "id");
         } else {
-            document.getElementById('lname').innerHTML = 'Name';
+            document.getElementById('lname').innerHTML = 'Name'; 
+            // document.getElementById('lorderId').innerHTML = 'Consultation ID';
             // document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
             document.getElementById('email').placeholder = 'Enter your active email ID';
             document.getElementById('header').innerHTML = 'Please share the information below and our Customer Support will get back to you at the soonest';
             // document.getElementById('lmobile').innerHTML = 'Mobile Number';
             document.getElementById('lemail').innerHTML = 'Email';
-            document.getElementById('lservice').innerHTML = "Service you're trying to book";
-            document.getElementById('lsubject').innerHTML = 'Name of Doctor and/or Hospital or Clinic';
-            document.getElementById('ltime').innerHTML = 'Date and time of appointment';
             document.getElementById('submit').innerHTML = 'Confirm';
             let x = document.getElementById('language');
             x.setAttribute("value", "en");
         }
 
-        if (email && name) {
+        if (email && context && name) {
             // let m = document.getElementById('mobile');
             let e = document.getElementById('email');
+            let c = document.getElementById('context');
             let s = document.getElementById('submit');
             let n = document.getElementById('name');
-            let svc = document.getElementById('service');
-            let sbj = document.getElementById('subject');
-            let tm = document.getElementById('time');
             // m.setAttribute("type", "hidden");
             e.setAttribute("type", "hidden");
             n.setAttribute("type", "hidden");
-            svc.setAttribute("type", "hidden");
-            sbj.setAttribute("type", "hidden");
-            tm.setAttribute("type", "hidden");
+            // c.setAttribute("type", "hidden");
+            c.hidden = true;
             s.style.visibility = "hidden";
-            
             document.getElementById('rname').innerHTML = name;
             // document.getElementById('rmobile').innerHTML = mobile;
             document.getElementById('remail').innerHTML = email;
-            document.getElementById('rservice').innerHTML = service;
-            document.getElementById('rsubject').innerHTML = subject;
-            document.getElementById('rtime').innerHTML = time;
-            
+            document.getElementById('rcontext').innerHTML = context;
             // m.setAttribute("value", mobile);
             e.setAttribute("value", email);
+            c.setAttribute("value", context);
             n.setAttribute("value", name);
-            svc.setAttribute("value", service);
-            sbj.setAttribute("value", subject);
-            tm.setAttribute("value", time);
-
-            let context = [];
-            service ? context.push(service) : context = context;
-            subject ? context.push(subject) : context = context;
-            time ? context.push(time) : context = context;
-            context = context.join('<br>');
-
             myFunction({ email, context, name });
         }
 
