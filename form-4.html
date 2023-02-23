@@ -124,7 +124,7 @@
                 <div id="remail" class="result"></div>
 
                 <label id="lservice"></label> <Br>
-                <input class="input" id="service" value="" name="service"/>
+                <input class="input" id="service" value="" name="service" />
                 <div id="rservice" class="result"></div>
 
                 <label id="lsubject"></label> <Br>
@@ -134,6 +134,10 @@
                 <label id="ltime"></label> <Br>
                 <input class="input" id="time" value="" name="time" />
                 <div id="rtime" class="result"></div>
+
+                <label id="ladditional"></label> <Br>
+                <input class="input" id="additional" value="" name="additional" />
+                <div id="radditional" class="result"></div>
 
                 <!-- <label id="lorderId"></label> <Br> -->
                 <!-- <input class="input" id="orderId" name="orderId" value="" disabled/> -->
@@ -170,8 +174,9 @@
         var service = params.get('service')
         var subject = params.get('subject')
         var time = params.get('time')
+        var additional = params.get('additional')
 
-        console.log({ language, email, name, service, subject, time  });
+        console.log({ language, email, name, service, subject, time, additional });
         // document.getElementById('lcontext').innerHTML = lcontext;
 
         if (language == 'id') {
@@ -180,6 +185,7 @@
             document.getElementById('email').placeholder = 'Email aktif';
             document.getElementById('header').innerHTML = 'Silakan lengkapi informasi berikut. Tim CS kami akan segera menghubungimu';
             // document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
+            document.getElementById('ladditional').innerHTML = 'Catatan tambahan';
             document.getElementById('lemail').innerHTML = 'Email';
             document.getElementById('lservice').innerHTML = "Layanan yang ingin dipesan";
             document.getElementById('lsubject').innerHTML = 'Nama Dokter dan/atau RS atau Klinik yang dituju';
@@ -193,6 +199,7 @@
             document.getElementById('email').placeholder = 'Enter your active email ID';
             document.getElementById('header').innerHTML = 'Please share the information below and our Customer Support will get back to you at the soonest';
             // document.getElementById('lmobile').innerHTML = 'Mobile Number';
+            document.getElementById('ladditional').innerHTML = 'Additional details'
             document.getElementById('lemail').innerHTML = 'Email';
             document.getElementById('lservice').innerHTML = "Service you're trying to book";
             document.getElementById('lsubject').innerHTML = 'Name of Doctor and/or Hospital or Clinic';
@@ -210,32 +217,37 @@
             let svc = document.getElementById('service');
             let sbj = document.getElementById('subject');
             let tm = document.getElementById('time');
+            let ad = document.getElementById('additional');
             // m.setAttribute("type", "hidden");
             e.setAttribute("type", "hidden");
             n.setAttribute("type", "hidden");
             svc.setAttribute("type", "hidden");
             sbj.setAttribute("type", "hidden");
             tm.setAttribute("type", "hidden");
+            ad.setAttribute("type", "hidden");
             s.style.visibility = "hidden";
-            
+
             document.getElementById('rname').innerHTML = name;
             // document.getElementById('rmobile').innerHTML = mobile;
             document.getElementById('remail').innerHTML = email;
             document.getElementById('rservice').innerHTML = service;
             document.getElementById('rsubject').innerHTML = subject;
             document.getElementById('rtime').innerHTML = time;
-            
+            document.getElementById('radditional').innerHTML = additional;
+
             // m.setAttribute("value", mobile);
             e.setAttribute("value", email);
             n.setAttribute("value", name);
             svc.setAttribute("value", service);
             sbj.setAttribute("value", subject);
             tm.setAttribute("value", time);
+            ad.setAttribute("value", additional);
 
             let context = [];
             service ? context.push(service) : context = context;
             subject ? context.push(subject) : context = context;
             time ? context.push(time) : context = context;
+            additional ? context.push(additional) : context = context;
             context = context.join('<br>');
 
             myFunction({ email, context, name });
