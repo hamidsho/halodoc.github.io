@@ -132,7 +132,7 @@
                 <div id="rsubject" class="result"></div>
 
                 <label id="ltime"></label> <Br>
-                <input class="input" id="time" value="" name="time" />
+                <input class="input" type="datetime-local" id="time" value="" name="time" />
                 <div id="rtime" class="result"></div>
 
                 <label id="ladditional"></label> <Br>
@@ -232,7 +232,7 @@
             document.getElementById('remail').innerHTML = email;
             document.getElementById('rservice').innerHTML = service;
             document.getElementById('rsubject').innerHTML = subject;
-            document.getElementById('rtime').innerHTML = time;
+            document.getElementById('rtime').innerHTML = time.split('T').join(' ');
             document.getElementById('radditional').innerHTML = additional;
 
             // m.setAttribute("value", mobile);
@@ -246,7 +246,7 @@
             let context = [];
             service ? context.push(service) : context = context;
             subject ? context.push(subject) : context = context;
-            time ? context.push(time) : context = context;
+            time ? context.push(time.split('T').join(' ')) : context = context;
             additional ? context.push(additional) : context = context;
             context = context.join('<br>');
 
