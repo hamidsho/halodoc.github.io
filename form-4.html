@@ -132,7 +132,7 @@
                 <div id="rsubject" class="result"></div>
 
                 <label id="ltime"></label> <Br>
-                <input class="input" type="datetime-local" id="time" value="" name="time" />
+                <input class="input" type="text" onfocus="(this.type='datetime-local')" id="time" value="" name="time" placeholder=""/>
                 <div id="rtime" class="result"></div>
 
                 <label id="ladditional"></label> <Br>
@@ -191,6 +191,7 @@
             document.getElementById('lsubject').innerHTML = 'Nama Dokter dan/atau RS atau Klinik yang dituju';
             document.getElementById('ltime').innerHTML = 'Tanggal dan waktu janji yang ingin dipesan';
             document.getElementById('submit').innerHTML = 'Kirim Tiket';
+            document.getElementById('time').placeholder = 'Pilih tanggal dan waktu';
             let x = document.getElementById('language');
             x.setAttribute("value", "id");
         } else {
@@ -204,6 +205,7 @@
             document.getElementById('lservice').innerHTML = "Service you're trying to book";
             document.getElementById('lsubject').innerHTML = 'Name of Doctor and/or Hospital or Clinic';
             document.getElementById('ltime').innerHTML = 'Date and time of appointment';
+            document.getElementById('time').placeholder = 'Select date and time';
             document.getElementById('submit').innerHTML = 'Confirm';
             let x = document.getElementById('language');
             x.setAttribute("value", "en");
