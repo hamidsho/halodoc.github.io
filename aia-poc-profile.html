@@ -223,7 +223,7 @@
       console.log({ firstname, lastname, dob, gender })
       //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
       let data = JSON.stringify({ firstname, lastname, dob, gender })
-      if (email && context) {
+      if (firstname && lastname && dob && gender) {
         window.parent.postMessage(JSON.stringify({
           event_code: "ym-client-event",
           data: JSON.stringify({
