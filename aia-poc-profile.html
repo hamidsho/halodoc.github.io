@@ -1,0 +1,253 @@
+<Html>
+
+<head>
+  <title>
+
+  </title>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+<body style="background-color:#EEEEEE; ">
+  <style>
+    body {
+      font-family: 'Inter';
+    }
+
+    input {
+      height: 2em;
+      width: 20em;
+      vertical-align: middle;
+    }
+
+    label {
+      color: black;
+    }
+
+    p {
+      text-align: justify
+    }
+
+    .container {
+      width: 220px;
+      background-color: #EEEEEE;
+      font-size: 12px;
+      text-align: left;
+    }
+
+    .input {
+      margin: 5px 0px;
+      padding: 15px 10px;
+      border: none;
+      border: none;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 5px;
+      border: 1px solid #EEEEEE;
+      outline: 0;
+      height: 25px;
+      width: 220px;
+      font-size: 12px;
+    }
+
+    .custom-select {
+      margin: 5px 0px;
+      padding: 5px 10px;
+      /* border: none; */
+      border-radius: 5px;
+      border: 1px solid #EEEEEE;
+      /* outline: 0; */
+      height: 30px;
+      width: 220px;
+      font-size: 12px;
+      font-family: 'Inter';
+    }
+
+    .input:focus {
+      border: 1px solid #DD0150;
+    }
+
+    .custom-select:focus {
+      border: 1px solid #DD0150;
+    }
+
+    .custom-select option {
+      width: 220px;
+      word-wrap: break-word;
+    }
+
+    .submit {
+      background-color: #DD0150;
+      padding: 15px 15px 15px 15px;
+      width: 220px;
+      border-radius: 5px;
+      font-size: 14px;
+      font-weight: bold;
+      border: none;
+      color: white;
+      height: 45px;
+    }
+
+    .submit:hover {
+      background-color: #f74586;
+    }
+
+    .result {
+      font-weight: bold;
+      margin: 10px 0px 20px;
+    }
+
+    select option:checked {
+      background-color: #DD0150 !important;
+      color: white !important;
+    }
+
+    .donate-now {
+      display: flex;
+      margin-bottom: 20px;
+      width: 200px;
+    }
+    .donate-now label,
+    .donate-now input {
+      margin-right: 10px ;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 60px;
+      height: 30px;
+      border: 1px solid #CCC;
+      border-radius: 5px;
+      padding: 0;
+      cursor: pointer;
+    }
+
+    .donate-now input[type="radio"] {
+      display: none;
+    }
+
+    .donate-now label:hover {
+      background: #DDD;
+    }
+
+    .donate-now input[type="radio"]:checked+label {
+      background: #DD0150;
+      color: white;
+    }
+
+    /* #aMale {
+      top: 20px;
+      left: 20px;
+    }
+
+    #aFemale {
+      top: 20px;
+      left: 140px;
+    } */
+  </style>
+  <center>
+
+
+    <div class="container">
+      <label id="header"></label> <br>
+      <br>
+
+      <form>
+        <label id="lfirstname">Nama depan</label> <Br>
+        <input class="input" id="firstname" name="firstname" value="" />
+        <div id="rfirstname" class="result"></div>
+
+        <label id="llastname">Nama belakang</label> <Br>
+        <input class="input" id="lastname" name="lastname" value="" />
+        <div id="rlastname" class="result"></div>
+
+        <label id="ldob">Tanggal lahir</label> <Br>
+        <input class="input" type="text" onfocus="(this.type='date')" id="dob" value="" name="dob" placeholder="Pilih tanggal" />
+        <div id="rdob" class="result"></div>
+        
+        <label id="lgender">Jenis kelamin</label> <Br>
+        <div class="donate-now" id="gender-menu">
+          <input type="radio" id="aMale" name="gender" value="Pria" checked="checked" />
+          <label for="aMale" id="aMale">Pria</label>
+          <input type="radio" id="aFemale" name="gender" value="Wanita" />
+          <label for="aFemale" id="aFemale">Wanita</label>
+        </div>
+        <input class="input" type="hidden" id="gender"/>
+        <div id="rgender" class="result"></div>
+
+        <button id="submit" class="submit">Selesai</button>
+      </form>
+
+    </div>
+
+
+  </center>
+  <script type="text/javascript">
+
+    // $(document).ready(function () {
+    let params = new URLSearchParams(window.location.search)
+    var firstname = params.get('firstname');
+    var lastname = params.get('lastname');
+    var dob = params.get('dob');
+    var gender = params.get('gender');
+
+    if (firstname, lastname, dob, gender) {
+
+      document.getElementById('firstname').setAttribute('type', 'hidden');
+      document.getElementById('lastname').setAttribute('type', 'hidden');
+      document.getElementById('dob').setAttribute('type', 'hidden');
+      document.getElementById('gender-menu').style.display = 'none';
+
+      document.getElementById('rfirstname').innerHTML = firstname;
+      document.getElementById('rlastname').innerHTML = lastname;
+      document.getElementById('rdob').innerHTML = dob;
+      document.getElementById('rgender').innerHTML = gender;
+
+      // m.setAttribute("value", mobile);
+      document.getElementById('firstname').setAttribute('value', firstname);
+      document.getElementById('lastname').setAttribute('value', lastname);
+      document.getElementById('dob').setAttribute('value', dob);
+      document.getElementById('gender').setAttribute('value', gender);
+
+      myFunction({ firstname, lastname, dob, gender });
+    }
+
+
+    // });
+    function myFunction({ firstname, lastname, dob, gender }) {
+      // var mobile = document.getElementById("mobile").value;
+      // var email = document.getElementById("email").value;
+      // var context = document.getElementById("context").value;
+      // var amount = document.getElementById("amount").value;
+      console.log({ firstname, lastname, dob, gender })
+      //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
+      let data = btoa(JSON.stringify({ firstname, lastname, dob, gender }))
+      if (email && context) {
+        window.parent.postMessage(JSON.stringify({
+          event_code: "ym-client-event",
+          data: JSON.stringify({
+            event: {
+              code: 'aia-poc-profile',
+              data
+            },
+          }),
+        }), "*");
+
+        console.log(JSON.stringify({
+          event_code: "ym-client-event",
+          data: JSON.stringify({
+            event: {
+              code: 'aia-poc-profile',
+              data
+            },
+          }),
+        }))
+      }
+
+
+    };
+
+              // document.getElementById("submit").addEventListener("click", myFunction());
+
+
+  </script>
+</body>
