@@ -27,6 +27,12 @@
             text-align: justify
         }
 
+        .title {
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
+        }
+
         .container {
             width: 220px;
             background-color: #EEEEEE;
@@ -105,7 +111,8 @@
 
 
         <div class="container">
-            <h3 id="header">Informasi yang Anda bagikan di bawah ini akan memungkinkan kamu untuk melayani Anda dengan lebih baik.</h3> <br>
+            <h3 class="title">CHECKOUT</h3>
+            <h4>Informasi yang Anda bagikan di bawah ini akan memungkinkan kamu untuk melayani Anda dengan lebih baik.</h3> <br>
             <!-- <br> -->
 
             <form>
@@ -114,7 +121,8 @@
                 <div id="result-number" class="result"></div>
 
                 <label id="label-expiry">Tanggal Kadaluarwa</label> <Br>
-                <input class="input" type="text" onfocus="(this.type='date')" id="expiry" value="" name="expiry" placeholder="Pilih tanggal" />
+                <input class="input" type="text" onfocus="(this.type='date')" id="expiry" value="" name="expiry"
+                    placeholder="Pilih tanggal" />
                 <div id="result-expiry" class="result"></div>
 
                 <label id="label-email">Alamat Email</label> <Br>
@@ -128,7 +136,7 @@
                     <option class="select-opt">Janda/Duda</option>
                 </select>
                 <div id="result-marital" class="result"></div>
-                
+
                 <button id="submit" class="submit">Selesai</button>
             </form>
 
@@ -139,27 +147,27 @@
     <script type="text/javascript">
 
         let params = new URLSearchParams(window.location.search)
-        var number  = params.get('number');
-        var expiry  = params.get('expiry');
-        var email   = params.get('email');
+        var number = params.get('number');
+        var expiry = params.get('expiry');
+        var email = params.get('email');
         var marital = params.get('marital');
 
         if (number && expiry && email && marital) {
-            let docNumber  = document.getElementById('number');
-            let docExpiry  = document.getElementById('expiry');
-            let docEmail   = document.getElementById('email');
+            let docNumber = document.getElementById('number');
+            let docExpiry = document.getElementById('expiry');
+            let docEmail = document.getElementById('email');
             let docMarital = document.getElementById('marital');
-            let docSubmit  = document.getElementById('submit');
+            let docSubmit = document.getElementById('submit');
 
             docNumber.setAttribute('type', 'hidden');
             docExpiry.setAttribute('type', 'hidden');
             docEmail.setAttribute('type', 'hidden');
             docMarital.hidden = true;
             docSubmit.style.visibility = "hidden";
-            
-            document.getElementById('result-number').innerHTML  = number;
-            document.getElementById('result-expiry').innerHTML  = expiry;
-            document.getElementById('result-email').innerHTML   = email;
+
+            document.getElementById('result-number').innerHTML = number;
+            document.getElementById('result-expiry').innerHTML = expiry;
+            document.getElementById('result-email').innerHTML = email;
             document.getElementById('result-marital').innerHTML = marital;
 
             docNumber.setAttribute('value', number);
