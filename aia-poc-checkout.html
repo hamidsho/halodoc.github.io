@@ -1,0 +1,302 @@
+<Html>
+
+<head>
+    <title>
+
+    </title>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+<body style="background-color:#dfe3e8; ">
+    <style>
+        body {
+            font-family: 'Inter';
+        }
+
+        input {
+            height: 2em;
+            width: 20em;
+            vertical-align: middle;
+        }
+
+        label {
+            color: black;
+        }
+
+        p {
+            text-align: justify
+        }
+
+        .title {
+            text-align: center;
+            border-bottom: 1px solid black;
+            padding-bottom: 5px;
+        }
+
+        .container {
+            width: 220px;
+            background-color: #dfe3e8;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .input {
+            margin: 5px 0px;
+            padding: 15px 10px;
+            border: none;
+            border: none;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            outline: 0;
+            height: 25px;
+            width: 220px;
+            font-size: 12px;
+        }
+
+        .custom-select {
+            margin: 5px 0px;
+            padding: 5px 10px;
+            /* border: none; */
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            /* outline: 0; */
+            height: 30px;
+            width: 220px;
+            font-size: 12px;
+            font-family: 'Inter';
+        }
+
+        .input:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .custom-select:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .custom-select option {
+            width: 220px;
+            word-wrap: break-word;
+        }
+
+        .submit {
+            background-color: #DD0150;
+            padding: 15px 15px 15px 15px;
+            width: 220px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            color: white;
+            height: 45px;
+        }
+
+        .submit:hover {
+            background-color: #f74586;
+        }
+
+        .submit:disabled,
+        .submit[disabled] {
+            /* border: 1px solid #999999; */
+            background-color: #cccccc;
+            color: #666666;
+        }
+
+        .result {
+            font-weight: bold;
+            margin: 10px 0px 20px;
+        }
+
+        select option:checked {
+            background-color: #DD0150 !important;
+            color: white !important;
+        }
+
+        .credit-card {
+            width: 220px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .card-exp-cvv {
+            margin-top: 0px;
+            display: flex;
+        }
+
+        .exp {
+            width: 50px;
+        }
+
+        .cvv {
+            margin-left: 10px;
+            width: 50px;
+        }
+
+        .or {
+            padding-top: 10px;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+
+        input[type=checkbox] {
+            margin-top: -5px;
+            width: 10px;
+        }
+
+        label {
+            display: inline-block;
+            vertical-align: top;
+            width: 180px;
+        }
+
+        .payment-success {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            position: fixed;
+            height: 550px;
+            width: 220px;
+            background-color: #dfe3e8;
+        }
+
+        .checklist-icon {
+            width: 100px;
+            border-radius: 50%;
+        }
+    </style>
+    <center>
+
+
+        <div class="container">
+            <h3 class="title" id="title">PAYMENT</h3>
+            <div id="payment-success" class="payment-success">
+                <img src="./resources/checklist.jpg" alt="Payment Success" class="checklist-icon">
+                <h3 style="color: green">PEMBAYARAN BERHASIL!</h3>
+                <span style="font-size: 10px;text-align: center;"><strong>Nomor Transaksi</strong>: 12341234213<br><strong>Nomor Polis</strong>: 123456</span>
+            </div>
+            <img src="./resources/credit-card-1.jpg" alt="Sample Credit Card" class="credit-card">
+            
+            <form>
+                <label id="label-number">No. Kartu</label> <Br>
+                <input class="input" id="number" name="number" value="" />
+
+                <div class="card-exp-cvv">
+                    <input class="input exp" id="month" name="month" value="" placeholder="MM" />
+                    <div class="or">/</div>
+                    <input class="input exp" id="year" name="year" value="" placeholder="YY" />
+                    <input class="input cvv" type="password" id="cvv" name="cvv" value="" placeholder="CVV" />
+                </div>
+
+                <label id="label-name">Nama pada Kartu</label> <Br>
+                <input class="input" id="name" value="" name="name" />
+                <div id="result-name" class="result"></div>
+
+                </span>
+                <input type="checkbox" id="term1" name="term1" value="term1" onchange="onCheck(this)">
+                <label for="term1"> I confirm that I am the policu owner and the owner of the card used for this
+                    transaction</label><br><br>
+                <input type="checkbox" id="term2" name="term2" value="term2" onchange="onCheck(this)">
+                <label for="term2"> I agree to the terms and conditions governing this insurance policy</label><br><br>
+                <input type="checkbox" id="term3" name="term3" value="term3" onchange="onCheck(this)">
+                <label for="term3"> I agree to be debited/charged on the card number above for my subsequent
+                    premium</label><br><br>
+
+
+                <button id="submit" class="submit" disabled>Kirim</button>
+            </form>
+
+        </div>
+
+
+    </center>
+    <script type="text/javascript">
+        document.getElementById('payment-success').style.display = 'none'
+        let params = new URLSearchParams(window.location.search)
+        var number = params.get('number');
+        var month = params.get('month');
+        var year = params.get('year');
+        var cvv = params.get('cvv');
+        var name = params.get('name');
+        var term1 = params.get('term1');
+        var term2 = params.get('term2');
+        var term3 = params.get('term3');
+        var checked = [];
+
+        let docSubmit = document.getElementById('submit');
+        docSubmit.disabled = true;
+
+        if (number && month && year && cvv && name && term1 && term2 && term3) {
+            let docNumber = document.getElementById('number');
+            let docMonth = document.getElementById('month');
+            let docYear = document.getElementById('year');
+            let docCVV = document.getElementById('cvv');
+            let docName = document.getElementById('name');
+            let docTerm1 = document.getElementById('term1');
+            let docTerm2 = document.getElementById('term2');
+            let docTerm3 = document.getElementById('term3');
+
+            docNumber.setAttribute('type', 'hidden');
+            docMonth.setAttribute('type', 'hidden');
+            docYear.setAttribute('type', 'hidden');
+            docCVV.setAttribute('type', 'hidden');
+            docName.setAttribute('type', 'hidden');
+            docTerm1.style.display = 'none'
+            docTerm2.style.display = 'none'
+            docTerm3.style.display = 'none'
+            docSubmit.style.visibility = "hidden";
+
+            docNumber.setAttribute('value', number);
+            docMonth.setAttribute('value', month);
+            docYear.setAttribute('value', year);
+            docCVV.setAttribute('value', cvv);
+            docName.setAttribute('value', name);
+
+            myFunction({ number, month, year, cvv, name });
+        }
+
+        function onCheck(checkbox) {
+            checkbox.checked ? checked.push(true) : checked.pop()
+            console.log(checked);
+            if (checked.length == 3) {
+                docSubmit.disabled = false;
+            } else {
+                docSubmit.disabled = true;
+            }
+        }
+
+        function myFunction({ number, month, year, cvv, name }) {
+            console.log({ number, month, year, cvv, name })
+            let data = JSON.stringify({ number, month, year, cvv, name })
+            if (number && month && year && cvv && name) {
+                document.getElementById('payment-success').style.display = 'flex'
+                window.parent.postMessage(JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: JSON.stringify({
+                        event: {
+                            code: 'aia-poc-precheckout',
+                            data
+                        },
+                    }),
+                }), "*");
+
+                console.log(JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: JSON.stringify({
+                        event: {
+                            code: 'aia-poc-precheckout',
+                            data
+                        },
+                    }),
+                }))
+            }
+
+
+        };
+
+
+    </script>
+</body>
