@@ -6,6 +6,7 @@
   </title>
 </head>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 <body style="background-color:white; ">
   <style>
@@ -184,7 +185,7 @@
             </div>
             <input class="input" type="hidden" id="gender" />
             <div id="rgender" class="result"></div>
-
+            <input class="input" type="hidden" id="sender" name="sender" />
             <button id="submit" class="submit">Selesai</button>
           </form>
 
@@ -221,8 +222,11 @@
     var lastname = params.get('lastname');
     var dob = params.get('dob');
     var gender = params.get('gender');
+    var sender = params.get('sender');
 
-    if (firstname, lastname, dob, gender) {
+    document.getElementById('sender').setAttribute("value", sender);
+
+    if (firstname && lastname && dob && gender) {
 
       document.getElementById('header').innerHTML = "Data berikut berhasil kami simpan. Anda dapat menutup laman ini menggunakan tombol (x). Terima kasih"
       document.getElementById('firstname').setAttribute('type', 'hidden');
@@ -275,6 +279,17 @@
             },
           }),
         }))
+
+        axios.post('https://app.yellow.ai/integrations/sendevent/webview-value/x1590740386221?source=facebook', {
+          "sender": sender,
+          "payload": "success"
+        }, {
+          headers: {
+            'authorization': 'a9c9874add94bbacb0ae918bd776',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          }
+        });
 
         closeView()
       }
