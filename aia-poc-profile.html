@@ -112,9 +112,10 @@
       margin-bottom: 20px;
       width: 200px;
     }
+
     .donate-now label,
     .donate-now input {
-      margin-right: 10px ;
+      margin-right: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -155,40 +156,60 @@
 
     <div class="container">
       <h3 class="title">INFO DETAILS<h3>
-      <h4>Kami ingin mengenal Anda!</h4>
-      <label id="header">Informasi yang Anda bagikan di bawah ini akan memungkinkan kami untuk menawarkan tawaran yang menarik</label> <br>
-      <br>
+          <h4>Kami ingin mengenal Anda!</h4>
+          <label id="header">Informasi yang Anda bagikan di bawah ini akan memungkinkan kami untuk menawarkan tawaran
+            yang menarik</label> <br>
+          <br>
 
-      <form>
-        <label id="lfirstname">Nama depan</label> <Br>
-        <input class="input" id="firstname" name="firstname" value="" />
-        <div id="rfirstname" class="result"></div>
+          <form>
+            <label id="lfirstname">Nama depan</label> <Br>
+            <input class="input" id="firstname" name="firstname" value="" />
+            <div id="rfirstname" class="result"></div>
 
-        <label id="llastname">Nama belakang</label> <Br>
-        <input class="input" id="lastname" name="lastname" value="" />
-        <div id="rlastname" class="result"></div>
+            <label id="llastname">Nama belakang</label> <Br>
+            <input class="input" id="lastname" name="lastname" value="" />
+            <div id="rlastname" class="result"></div>
 
-        <label id="ldob">Tanggal lahir</label> <Br>
-        <input class="input" type="text" onfocus="(this.type='date')" id="dob" value="" name="dob" placeholder="Pilih tanggal" />
-        <div id="rdob" class="result"></div>
-        
-        <label id="lgender">Jenis kelamin</label> <Br>
-        <div class="donate-now" id="gender-menu">
-          <input type="radio" id="aMale" name="gender" value="Pria" checked="checked" />
-          <label for="aMale" id="aMale">Pria</label>
-          <input type="radio" id="aFemale" name="gender" value="Wanita" />
-          <label for="aFemale" id="aFemale">Wanita</label>
-        </div>
-        <input class="input" type="hidden" id="gender"/>
-        <div id="rgender" class="result"></div>
+            <label id="ldob">Tanggal lahir</label> <Br>
+            <input class="input" type="text" onfocus="(this.type='date')" id="dob" value="" name="dob"
+              placeholder="Pilih tanggal" />
+            <div id="rdob" class="result"></div>
 
-        <button id="submit" class="submit">Selesai</button>
-      </form>
+            <label id="lgender">Jenis kelamin</label> <Br>
+            <div class="donate-now" id="gender-menu">
+              <input type="radio" id="aMale" name="gender" value="Pria" checked="checked" />
+              <label for="aMale" id="aMale">Pria</label>
+              <input type="radio" id="aFemale" name="gender" value="Wanita" />
+              <label for="aFemale" id="aFemale">Wanita</label>
+            </div>
+            <input class="input" type="hidden" id="gender" />
+            <div id="rgender" class="result"></div>
+
+            <button id="submit" class="submit">Selesai</button>
+          </form>
 
     </div>
 
 
   </center>
+  <script>
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'Messenger'));
+  </script>
+  <script>
+    function closeView() {
+      MessengerExtensions.requestCloseBrowser(function success() {
+
+      }, function error(err) {
+        console.log(err)
+      });
+    }
+  </script>
   <script type="text/javascript">
 
     // $(document).ready(function () {
@@ -215,7 +236,7 @@
       document.getElementById('lastname').setAttribute('value', lastname);
       document.getElementById('dob').setAttribute('value', dob);
       document.getElementById('gender').setAttribute('value', gender);
-      
+
       document.getElementById('submit').style.display = 'none';
       myFunction({ firstname, lastname, dob, gender });
     }
@@ -250,6 +271,8 @@
             },
           }),
         }))
+
+        closeView()
       }
 
 
