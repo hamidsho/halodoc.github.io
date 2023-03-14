@@ -212,6 +212,26 @@
       });
     }
   </script> -->
+  <script>
+    window.extAsyncInit = function() {
+      // Initialize the Messenger Extensions SDK
+      MessengerExtensions.init(function success() {
+        console.log('MessengerExtensions SDK initialized');
+      }, function error(err) {
+        console.log('Error initializing MessengerExtensions SDK:', err);
+      });
+  
+      // Add an event listener to a button or element to close the webview
+      document.getElementById('submit').addEventListener('click', function() {
+        MessengerExtensions.requestCloseBrowser(function success() {
+          console.log('Webview closed');
+        }, function error(err) {
+          console.log('Error closing webview:', err);
+        });
+      });
+    };
+  </script>
+  
   <script type="text/javascript">
     // (function (d, s, id) {
     //   var js, fjs = d.getElementsByTagName(s)[0];
@@ -220,16 +240,16 @@
     //   js.src = "//connect.facebook.com/en_US/messenger.Extensions.js";
     //   fjs.parentNode.insertBefore(js, fjs);
     // }(document, 'script', 'Messenger'));
-
-    function closeView() {
-      MessengerExtensions.requestCloseBrowser(function success() {
-        window.close();
-      }, function error(err) {
-        console.log(err)
-        window.close();
-        // window.top.close();
-      });
-    }
+      
+    // function closeView() {
+    //   MessengerExtensions.requestCloseBrowser(function success() {
+    //     window.close();
+    //   }, function error(err) {
+    //     console.log(err)
+    //     window.close();
+    //     // window.top.close();
+    //   });
+    // }
 
     // $(document).ready(function () {
     let params = new URLSearchParams(window.location.search)
@@ -260,15 +280,15 @@
       // myFunction({ firstname, lastname, dob, gender });
     }
 
-    document.getElementById('submit').addEventListener('click', function () {
-      setTimeout(() => {
-        MessengerExtensions.requestCloseBrowser(function success() {
-          console.log('Webview closed');
-        }, function error(err) {
-          console.log('Error closing webview:', err);
-        });
-      }, 2000)
-    });
+    // document.getElementById('submit').addEventListener('click', function () {
+    //   setTimeout(() => {
+    //     MessengerExtensions.requestCloseBrowser(function success() {
+    //       console.log('Webview closed');
+    //     }, function error(err) {
+    //       console.log('Error closing webview:', err);
+    //     });
+    //   }, 2000)
+    // });
 
 
     // });
