@@ -222,10 +222,11 @@
 
     function closeView() {
       MessengerExtensions.requestCloseBrowser(function success() {
-
+        window.close();
       }, function error(err) {
         console.log(err)
-        window.top.close();
+        window.close();
+        // window.top.close();
       });
     }
 
