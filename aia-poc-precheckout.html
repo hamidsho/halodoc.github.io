@@ -7,7 +7,7 @@
 </head>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
-<body style="background-color:#dfe3e8; ">
+<body style="background-color:white; ">
     <style>
         body {
             font-family: 'Inter';
@@ -34,8 +34,9 @@
         }
 
         .container {
-            width: 220px;
-            background-color: #dfe3e8;;
+            width: 300px;
+            background-color: white;
+            ;
             font-size: 12px;
             text-align: left;
         }
@@ -51,7 +52,7 @@
             border: 1px solid #EEEEEE;
             outline: 0;
             height: 25px;
-            width: 220px;
+            width: 300px;
             font-size: 12px;
         }
 
@@ -63,7 +64,7 @@
             border: 1px solid #EEEEEE;
             /* outline: 0; */
             height: 30px;
-            width: 220px;
+            width: 300px;
             font-size: 12px;
             font-family: 'Inter';
         }
@@ -77,14 +78,14 @@
         }
 
         .custom-select option {
-            width: 220px;
+            width: 300px;
             word-wrap: break-word;
         }
 
         .submit {
             background-color: #DD0150;
             padding: 15px 15px 15px 15px;
-            width: 220px;
+            width: 300px;
             border-radius: 5px;
             font-size: 14px;
             font-weight: bold;
@@ -112,33 +113,34 @@
 
         <div class="container">
             <h3 class="title">CHECKOUT</h3>
-            <h4>Informasi yang Anda bagikan di bawah ini akan memungkinkan kamu untuk melayani Anda dengan lebih baik.</h3> <br>
-            <!-- <br> -->
+            <h4>Informasi yang Anda bagikan di bawah ini akan memungkinkan kamu untuk melayani Anda dengan lebih baik.
+                </h3> <br>
+                <!-- <br> -->
 
-            <form>
-                <label id="label-number">No. ID</label> <Br>
-                <input class="input" id="number" name="number" value="" />
-                <div id="result-number" class="result"></div>
+                <form>
+                    <label id="label-number">No. ID</label> <Br>
+                    <input class="input" id="number" name="number" value="" />
+                    <div id="result-number" class="result"></div>
 
-                <label id="label-expiry">Tanggal Kadaluarwa</label> <Br>
-                <input class="input" type="text" onfocus="(this.type='date')" id="expiry" value="" name="expiry"
-                    placeholder="Pilih tanggal" />
-                <div id="result-expiry" class="result"></div>
+                    <label id="label-expiry">Tanggal Kadaluarwa</label> <Br>
+                    <input class="input" type="text" onfocus="(this.type='date')" id="expiry" value="" name="expiry"
+                        placeholder="Pilih tanggal" />
+                    <div id="result-expiry" class="result"></div>
 
-                <label id="label-email">Alamat Email</label> <Br>
-                <input class="input" id="email" type="email" value="" name="email" />
-                <div id="result-email" class="result"></div>
+                    <label id="label-email">Alamat Email</label> <Br>
+                    <input class="input" id="email" type="email" value="" name="email" />
+                    <div id="result-email" class="result"></div>
 
-                <label id="label-marital">Status Pernikahan</label><br>
-                <select class="custom-select" id="marital" name="marital">
-                    <option class="select-opt">Lajang</option>
-                    <option class="select-opt">Menikah</option>
-                    <option class="select-opt">Janda/Duda</option>
-                </select>
-                <div id="result-marital" class="result"></div>
+                    <label id="label-marital">Status Pernikahan</label><br>
+                    <select class="custom-select" id="marital" name="marital">
+                        <option class="select-opt">Lajang</option>
+                        <option class="select-opt">Menikah</option>
+                        <option class="select-opt">Janda/Duda</option>
+                    </select>
+                    <div id="result-marital" class="result"></div>
 
-                <button id="submit" class="submit">Selesai</button>
-            </form>
+                    <button id="submit" class="submit">Selesai</button>
+                </form>
 
         </div>
 
@@ -153,6 +155,7 @@
         var marital = params.get('marital');
 
         if (number && expiry && email && marital) {
+            document.getElementById('header').innerHTML = "Data berikut berhasil kami simpan. Anda dapat menutup laman ini menggunakan tombol (x). Terima kasih"
             let docNumber = document.getElementById('number');
             let docExpiry = document.getElementById('expiry');
             let docEmail = document.getElementById('email');
@@ -201,6 +204,17 @@
                         },
                     }),
                 }))
+
+                axios.post('https://cors-anywhere.herokuapp.com/https://app.yellow.ai/integrations/sendevent/webview-value/x1590740386221?source=facebook', {
+                    "sender": sender,
+                    "payload": "success"
+                }, {
+                    headers: {
+                        'authorization': 'a9c9874add94bbacb0ae918bd776',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                });
             }
 
 

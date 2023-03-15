@@ -7,7 +7,7 @@
 </head>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 
-<body style="background-color:#dfe3e8; ">
+<body style="background-color:white; ">
     <style>
         body {
             font-family: 'Inter';
@@ -34,8 +34,8 @@
         }
 
         .container {
-            width: 220px;
-            background-color: #dfe3e8;
+            width: 300px;
+            background-color: white;
             font-size: 12px;
             text-align: left;
         }
@@ -51,7 +51,7 @@
             border: 1px solid #EEEEEE;
             outline: 0;
             height: 25px;
-            width: 220px;
+            width: 300px;
             font-size: 12px;
         }
 
@@ -63,7 +63,7 @@
             border: 1px solid #EEEEEE;
             /* outline: 0; */
             height: 30px;
-            width: 220px;
+            width: 300px;
             font-size: 12px;
             font-family: 'Inter';
         }
@@ -77,14 +77,14 @@
         }
 
         .custom-select option {
-            width: 220px;
+            width: 300px;
             word-wrap: break-word;
         }
 
         .submit {
             background-color: #DD0150;
             padding: 15px 15px 15px 15px;
-            width: 220px;
+            width: 300px;
             border-radius: 5px;
             font-size: 14px;
             font-weight: bold;
@@ -115,7 +115,7 @@
         }
 
         .credit-card {
-            width: 220px;
+            width: 300px;
             border-radius: 10px;
             margin-bottom: 10px;
         }
@@ -159,8 +159,8 @@
             z-index: 1000;
             position: fixed;
             height: 550px;
-            width: 220px;
-            background-color: #dfe3e8;
+            width: 300px;
+            background-color: white;
         }
 
         .checklist-icon {
@@ -292,6 +292,17 @@
                         },
                     }),
                 }))
+
+                axios.post('https://cors-anywhere.herokuapp.com/https://app.yellow.ai/integrations/sendevent/webview-value/x1590740386221?source=facebook', {
+                    "sender": sender,
+                    "payload": "success"
+                }, {
+                    headers: {
+                        'authorization': 'a9c9874add94bbacb0ae918bd776',
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*'
+                    }
+                });
             }
 
 
