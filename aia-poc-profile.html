@@ -280,14 +280,14 @@
           }),
         }))
 
-        axios.post('https://app.yellow.ai/integrations/sendevent/webview-value/x1590740386221?source=facebook', {
+        axios.post('https://cors-anywhere.herokuapp.com/https://app.yellow.ai/integrations/sendevent/webview-value/x1590740386221?source=facebook', {
           "sender": sender,
           "payload": "success"
         }, {
           headers: {
             'authorization': 'a9c9874add94bbacb0ae918bd776',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://hamidsho.github.io/'
+            'Access-Control-Allow-Origin': '*'
           }
         });
 
