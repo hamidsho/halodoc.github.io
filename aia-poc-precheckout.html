@@ -49,7 +49,7 @@
             -webkit-border-radius: 10px;
             -moz-border-radius: 10px;
             border-radius: 5px;
-            border: 1px solid #EEEEEE;
+            border: 1px solid gray;
             outline: 0;
             height: 25px;
             width: 300px;
@@ -61,7 +61,7 @@
             padding: 5px 10px;
             /* border: none; */
             border-radius: 5px;
-            border: 1px solid #EEEEEE;
+            border: 1px solid gray;
             /* outline: 0; */
             height: 30px;
             width: 300px;
@@ -138,7 +138,7 @@
                         <option class="select-opt">Janda/Duda</option>
                     </select>
                     <div id="result-marital" class="result"></div>
-
+                    <input class="input" type="hidden" id="sender" name="sender" />
                     <button id="submit" class="submit">Selesai</button>
                 </form>
 
@@ -153,6 +153,9 @@
         var expiry = params.get('expiry');
         var email = params.get('email');
         var marital = params.get('marital');
+        var sender = params.get('sender');
+
+        document.getElementById('sender').setAttribute("value", sender);
 
         if (number && expiry && email && marital) {
             document.getElementById('header').innerHTML = "Data berikut berhasil kami simpan. Anda dapat menutup laman ini menggunakan tombol (x). Terima kasih"
