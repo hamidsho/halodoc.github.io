@@ -1,0 +1,296 @@
+<Html>
+
+<head>
+    <title>
+
+    </title>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+<body style="background-color:#EEEEEE; ">
+    <style>
+        body {
+            font-family: 'Inter';
+        }
+
+        input {
+            height: 2em;
+            width: 20em;
+            vertical-align: middle;
+        }
+
+        label {
+            color: black;
+        }
+
+        p {
+            text-align: justify
+        }
+
+        .container {
+            width: 220px;
+            background-color: #EEEEEE;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .input {
+            margin: 5px 0px;
+            padding: 15px 10px;
+            border: none;
+            border: none;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            outline: 0;
+            height: 25px;
+            width: 220px;
+            font-size: 12px;
+        }
+
+        .custom-select {
+            margin: 5px 0px;
+            padding: 5px 10px;
+            /* border: none; */
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            /* outline: 0; */
+            height: 30px;
+            width: 220px;
+            font-size: 12px;
+            font-family: 'Inter';
+        }
+
+        .input:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .custom-select:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .submit {
+            background-color: #DD0150;
+            padding: 15px 15px 15px 15px;
+            width: 220px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            color: white;
+            height: 45px;
+        }
+
+        .submit:hover {
+            background-color: #f74586;
+        }
+
+        .result {
+            font-weight: bold;
+            margin: 10px 0px 20px;
+        }
+
+        select option:checked {
+            background-color: #DD0150 !important;
+            color: white !important;
+        }
+    </style>
+    <center>
+
+
+        <div class="container">
+            <label id="header"></label> <br>
+            <br>
+
+            <form>
+                <label id="lname"></label> <Br>
+                <input class="input" id="name" type="text" value="" name="name" />
+                <div id="rname" class="result"></div>
+
+                <label id="lmobile"></label> <Br>
+                <input class="input" id="mobile" type="tel"
+                    pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
+                    name="mobile" size="15" value="" />
+                <div id="rmobile" class="result"></div>
+
+                <label id="ldob"></label> <Br>
+                <input class="input" id="dob" type="date" value="" name="dob" />
+                <div id="rdob" class="result"></div>
+
+
+                <label id="lcontext"></label><br>
+                <select class="custom-select" id="context" name="context">
+                    <option class="select-opt">Online Consultation</option>
+                    <option class="select-opt">Offline Appointment Booking</option>
+                    <option class="select-opt">Home Lab Booking</option>
+                    <option class="select-opt">Health Store Purchase</option>
+                    <option class="select-opt">Subscription Purchase</option>
+                    <!-- <option class="select-opt" id="halodocbalance"></option>
+                    <option class="select-opt" value="Virtual Account">Virtual Account</option>
+                    <option class="select-opt" value="Gopay">Gopay</option>
+                    <option class="select-opt" value="LinkAja">LinkAja</option>
+                    <option class="select-opt" id="creditcard"></option> -->
+                </select>
+                <div id="rcontext" class="result"></div>
+
+                <label id="ltransaction"></label> <Br>
+                <input class="input" id="transaction" type="date" value="" name="transaction" />
+                <div id="rtransaction" class="result"></div>
+
+
+                <!-- <label id="lamount"></label><br>
+                <input class="input" id="amount" type="number" name="amount" min="0" value="0" />
+                <div id="ramount" class="result"></div> -->
+
+                <label id="lemail"></label> <Br>
+                <input class="input" id="email" type="email" value="" name="email" size="15" />
+                <div id="remail" class="result"></div>
+
+
+                <input type="hidden" id="language" name="language" value="id" />
+                <input type="hidden" id="vcontext" name="lcontext" value="" />
+                <!-- <input type="hidden" id="vamount" name="lamount" value="" /> -->
+                <button id="submit" class="submit"></button>
+            </form>
+
+        </div>
+
+
+    </center>
+    <script type="text/javascript">
+
+        // $(document).ready(function () {
+        let params = new URLSearchParams(window.location.search)
+        // console.log(params.get('language'))
+        var lcontext = params.get('lcontext')
+        // var lamount = params.get('lamount')
+        var language = params.get('language')
+        var mobile = params.get('mobile')
+        var email = params.get('email')
+        var name = params.get('name')
+        var dob = params.get('dob')
+        var context = params.get('context')
+        var transaction = params.get('transaction')
+        // var amount = params.get('amount')
+        // var mincontext = params.get('mincontext')
+
+        console.log({ context, language });
+        document.getElementById('lcontext').innerHTML = lcontext;
+        // document.getElementById('lamount').innerHTML = lamount;
+        let x = document.getElementById('vcontext');
+        // let z = document.getElementById('vamount');
+        let y = document.getElementById('context');
+        x.setAttribute("value", lcontext);
+        // z.setAttribute("value", lamount);
+        // if (parseInt(mincontext)) {
+        //     y.setAttribute("minlength", `${mincontext}`);
+        //     language == "id" ? y.setAttribute("oninvalid", `this.setCustomValidity('Minimum ${mincontext} karakter')`) : y.setAttribute("oninvalid", `this.setCustomValidity('${mincontext} characters minimum')`)
+        //     y.setAttribute("oninput", "setCustomValidity('')");
+        // }
+
+        if (language == 'id') {
+            document.getElementById('name').placeholder = "Nama Anda"
+            document.getElementById('email').placeholder = "Alamat email Anda"
+            document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
+            document.getElementById('header').innerHTML = 'Silahkan berikan informasi berikut dan tim CS kami akan segera menghubungimu kembali:';
+            document.getElementById('lname').innerHTML = "Nama"
+            document.getElementById('lemail').innerHTML = "Email"
+            document.getElementById('ldob').innerHTML = "Tanggal lahir"
+            document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
+            document.getElementById('lcontext').innerHTML = "Transaksi terakhir di Halodoc"
+            document.getElementById('ltransaction').innerHTML = "Tanggal terakhir transaksi"
+            document.getElementById('submit').innerHTML = 'Kirim Tiket';
+            let x = document.getElementById('language');
+            x.setAttribute("value", "id");
+        } else {
+            document.getElementById('name').placeholder = "Your Name"
+            document.getElementById('email').placeholder = "Your email address"
+            document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
+            document.getElementById('header').innerHTML = 'We need some information to create a ticket for your complaint. First, share your:';
+            document.getElementById('lname').innerHTML = "Name"
+            document.getElementById('lemail').innerHTML = "Email address"
+            document.getElementById('ldob').innerHTML = "Date of birth"
+            document.getElementById('lcontext').innerHTML = "Last transaction on Halodoc"
+            document.getElementById('ltransaction').innerHTML = "Date of last transaction"
+            document.getElementById('lmobile').innerHTML = 'Mobile Number';
+            document.getElementById('submit').innerHTML = 'Confirm';
+            let x = document.getElementById('language');
+            x.setAttribute("value", "en");
+        }
+
+        if (name && mobile && email && context) {
+            let n = document.getElementById('name');
+            let t = document.getElementById('transaction');
+            let d = document.getElementById('dob')
+            let m = document.getElementById('mobile');
+            let e = document.getElementById('email');
+            let c = document.getElementById('context');
+            // let a = document.getElementById('amount');
+            let s = document.getElementById('submit');
+            n.setAttribute("type", "hidden");
+            t.setAttribute("type", "hidden");
+            d.setAttribute("type", "hidden");
+            m.setAttribute("type", "hidden");
+            e.setAttribute("type", "hidden");
+            // c.setAttribute("type", "hidden");
+            c.hidden = true;
+            // a.setAttribute("type", "hidden");
+            s.style.visibility = "hidden";
+            document.getElementById('rname').innerHTML = name;
+            document.getElementById('rdob').innerHTML = dob;
+            document.getElementById('rtransaction').innerHTML = transaction;
+            document.getElementById('rmobile').innerHTML = mobile;
+            document.getElementById('remail').innerHTML = email;
+            document.getElementById('rcontext').innerHTML = context;
+            // document.getElementById('ramount').innerHTML = `Rp${parseInt(amount).toLocaleString().split(',').join('.')}`;
+            n.setAttribute("value", name);
+            t.setAttribute("value", transaction);
+            d.setAttribute("value", dob);
+            m.setAttribute("value", mobile);
+            e.setAttribute("value", email);
+            c.setAttribute("value", context);
+            // a.setAttribute("value", amount);
+            myFunction({ name, dob, transaction, mobile, email, context })
+        }
+
+
+        // });
+        function myFunction({ name, dob, transaction, mobile, email, context }) {
+            // var mobile = document.getElementById("mobile").value;
+            // var email = document.getElementById("email").value;
+            // var context = document.getElementById("context").value;
+            // var amount = document.getElementById("amount").value;
+            console.log({ name, dob, transaction, mobile, email, context })
+            //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
+            let data = btoa(JSON.stringify({ name, dob, transaction, mobile, email, context }))
+            if (name && dob && transaction & mobile && email && context) {
+                window.parent.postMessage(JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: JSON.stringify({
+                        event: {
+                            code: new Date().getTime().toString(),
+                            data
+                        },
+                    }),
+                }), "*");
+
+                console.log(JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: JSON.stringify({
+                        event: {
+                            code: new Date().getTime().toString(),
+                            data
+                        },
+                    }),
+                }))
+            }
+
+
+        };
+
+        // document.getElementById("submit").addEventListener("click", myFunction());
+
+
+    </script>
+</body>
