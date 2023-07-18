@@ -121,11 +121,11 @@
 
                 <label id="lhalodoctrans"></label><br>
                 <select class="custom-select" id="halodoctrans" name="halodoctrans">
-                    <option class="select-opt">Online Consultation</option>
-                    <option class="select-opt">Offline Appointment Booking</option>
-                    <option class="select-opt">Home Lab Booking</option>
-                    <option class="select-opt">Health Store Purchase</option>
-                    <option class="select-opt">Subscription Purchase</option>
+                    <option class="select-opt" id="opt-1"></option>
+                    <option class="select-opt" id="opt-2"></option>
+                    <option class="select-opt" id="opt-3"></option>
+                    <option class="select-opt" id="opt-4"></option>
+                    <option class="select-opt" id="opt-5"></option>
                     <!-- <option class="select-opt" id="halodocbalance"></option>
                     <option class="select-opt" value="Virtual Account">Virtual Account</option>
                     <option class="select-opt" value="Gopay">Gopay</option>
@@ -201,6 +201,11 @@
             document.getElementById('lhalodoctrans').innerHTML = "Transaksi terakhir di Halodoc"
             document.getElementById('ltransaction').innerHTML = "Tanggal terakhir transaksi"
             document.getElementById('submit').innerHTML = 'Kirim Tiket';
+            document.getElementById('opt-1').innerHTML = "Chat Dokter";
+            document.getElementById('opt-2').innerHTML = "Buat Janji Offline"
+            document.getElementById('opt-3').innerHTML = "Pesan Home Lab"
+            document.getElementById('opt-4').innerHTML = "Beli dari Toko Kesehatan"
+            document.getElementById('opt-5').innerHTML = "Beli Paket Langganan" 
             let x = document.getElementById('language');
             x.setAttribute("value", "id");
         } else {
@@ -215,6 +220,11 @@
             document.getElementById('ltransaction').innerHTML = "Date of last transaction"
             document.getElementById('lmobile').innerHTML = 'Mobile Number';
             document.getElementById('submit').innerHTML = 'Confirm';
+            document.getElementById('opt-1').innerHTML = "Online Consultation"
+            document.getElementById('opt-2').innerHTML = "Offline Appointment Booking"
+            document.getElementById('opt-3').innerHTML = "Home Lab Booking"
+            document.getElementById('opt-4').innerHTML = "Health Store Purchase"
+            document.getElementById('opt-5').innerHTML = "Subscription Purchase"
             let x = document.getElementById('language');
             x.setAttribute("value", "en");
         }
