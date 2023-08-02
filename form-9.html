@@ -1,0 +1,287 @@
+<Html>
+
+<head>
+    <title>
+
+    </title>
+</head>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+
+<body style="background-color:#EEEEEE; ">
+    <style>
+        body {
+            font-family: 'Inter';
+        }
+
+        input {
+            height: 2em;
+            width: 20em;
+            vertical-align: middle;
+        }
+
+        label {
+            color: black;
+        }
+
+        p {
+            text-align: justify
+        }
+
+        .container {
+            width: 220px;
+            background-color: #EEEEEE;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .input {
+            margin: 5px 0px;
+            padding: 15px 10px;
+            border: none;
+            border: none;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            outline: 0;
+            height: 25px;
+            width: 220px;
+            font-size: 12px;
+        }
+
+        .custom-select {
+            margin: 5px 0px;
+            padding: 5px 10px;
+            /* border: none; */
+            border-radius: 5px;
+            border: 1px solid #EEEEEE;
+            /* outline: 0; */
+            height: 30px;
+            width: 220px;
+            font-size: 12px;
+            font-family: 'Inter';
+        }
+
+        .input:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .custom-select:focus {
+            border: 1px solid #DD0150;
+        }
+
+        .submit {
+            background-color: #DD0150;
+            padding: 15px 15px 15px 15px;
+            width: 220px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            color: white;
+            height: 45px;
+        }
+
+        .submit:hover {
+            background-color: #f74586;
+        }
+
+        .result {
+            font-weight: bold;
+            margin: 10px 0px 20px;
+        }
+
+        select option:checked {
+            background-color: #DD0150 !important;
+            color: white !important;
+        }
+    </style>
+    <center>
+
+
+        <div class="container">
+            <label id="header"></label> <br>
+            <br>
+
+            <form>
+                <label id="lname"></label> <Br>
+                <input class="input" id="name" type="text" value="" name="name" />
+                <div id="rname" class="result"></div>
+
+                <label id="lmobile"></label> <Br>
+                <input class="input" id="mobile" type="tel"
+                    pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
+                    name="mobile" size="15" value="" />
+                <div id="rmobile" class="result"></div>
+
+                <label id="lemail"></label> <Br>
+                <input class="input" id="email" type="email" value="" name="email" size="15" />
+                <div id="remail" class="result"></div>
+
+                <label id="lconsultationid"></label> <Br>
+                <input class="input" id="consultationid" type="text" value="" name="consultationid" />
+                <div id="rconsultationid" class="result"></div>
+
+
+                <label id="lissue"></label><br>
+                <select class="custom-select" id="issue" name="issue">
+                    <option class="select-opt" id="opt-1"></option>
+                    <option class="select-opt" id="opt-2"></option>
+                    <option class="select-opt" id="opt-3"></option>
+                    <option class="select-opt" id="opt-4"></option>
+                    <option class="select-opt" id="opt-5"></option>
+                    <option class="select-opt" id="opt-6"></option>
+                    <option class="select-opt" id="opt-7"></option>
+                </select>
+                <div id="rissue" class="result"></div>
+
+                <label id="lallergy"></label> <Br>
+                <input style="margin-top: -35px;margin-bottom: 20px;" class="input" id="allergy" type="text" value="" name="allergy" />
+                <div style="margin-top: -30px" id="rallergy" class="result"></div>
+
+
+                <input type="hidden" id="language" name="language" value="id" />
+                <button id="submit" class="submit"></button>
+            </form>
+
+        </div>
+
+
+    </center>
+    <script type="text/javascript">
+
+        // $(document).ready(function () {
+        let params = new URLSearchParams(window.location.search)
+        var language = params.get('language')
+        var mobile = params.get('mobile')
+        var email = params.get('email')
+        var name = params.get('name')
+        var consultationid = params.get('consultationid')
+        var issue = params.get('issue')
+        var allergy = params.get('allergy')
+
+        document.getElementById('allergy').hidden = true;
+        console.log({ issue, allergy, language });
+        document.getElementById('issue').addEventListener("change", function () {
+            let value = this.value
+            console.log(value);
+            if (value == "Saya alergi terhadap obat yang diresepkan." || value == "I'm allergic to the medicines prescribed.") {
+                document.getElementById('allergy').hidden = false;
+            } else {
+                document.getElementById('allergy').hidden = true;
+            }
+        });
+        if (language == 'id') {
+            document.getElementById('name').placeholder = "Nama Anda"
+            document.getElementById('email').placeholder = "Alamat email Anda"
+            document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
+            document.getElementById('header').innerHTML = 'Silakan lengkapi informasi berikut. Tim CS kami akan segera menghubungimu.';
+            document.getElementById('lname').innerHTML = "Nama"
+            document.getElementById('lemail').innerHTML = "Email"
+            document.getElementById('lmobile').innerHTML = 'Nomor Telepon';
+            document.getElementById('lconsultationid').innerHTML = 'ID Konsultasi';
+            document.getElementById('lissue').innerHTML = "Jenis Masalah"
+            document.getElementById('allergy').placeholder = "Tuliskan nama obat yang memicu alergi"
+            document.getElementById('submit').innerHTML = 'Kirim Tiket';
+            document.getElementById('opt-1').innerHTML = "Obat yang diresepkan tidak tersedia.";
+            document.getElementById('opt-2').innerHTML = "Saya belum menerima resep obat."
+            document.getElementById('opt-3').innerHTML = "Saya alergi terhadap obat yang diresepkan."
+            document.getElementById('opt-4').innerHTML = "Instruksi pada resep obat berbeda dari catatan dokter."
+            document.getElementById('opt-5').innerHTML = "Dosis pada resep obat berbeda dari catatan dokter."
+            document.getElementById('opt-6').innerHTML = "Saya tidak dapat melihat atau mengunduh resep digital saya."
+            document.getElementById('opt-5').innerHTML = "Saya perlu instruksi untuk obat yang diresepkan."
+            document.getElementById('opt-6').innerHTML = "Saya memerlukan obat dengan jumlah lebih banyak dari yang diresepkan."
+            document.getElementById('opt-7').innerHTML = "Saya tidak dapat menebus resep digital saya."
+            let x = document.getElementById('language');
+            x.setAttribute("value", "id");
+        } else {
+            document.getElementById('name').placeholder = "Your Name"
+            document.getElementById('email').placeholder = "Your email address"
+            document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
+            document.getElementById('header').innerHTML = 'Please share the information below and our Customer Support will get back to you at the soonest.';
+            document.getElementById('lname').innerHTML = "Name"
+            document.getElementById('lemail').innerHTML = "Email address"
+            document.getElementById('lconsultaionid').innerHTML = 'Consultation ID';
+            document.getElementById('lissue').innerHTML = "Type of issue"
+            document.getElementById('allergy').placeholder = "name medicine allergic to"
+            document.getElementById('lmobile').innerHTML = 'Mobile Number';
+            document.getElementById('submit').innerHTML = 'Confirm';
+            document.getElementById('opt-1').innerHTML = "The medicines prescribed aren't available."
+            document.getElementById('opt-2').innerHTML = "I haven't received my prescription."
+            document.getElementById('opt-3').innerHTML = "I'm allergic to the medicines prescribed."
+            document.getElementById('opt-4').innerHTML = "The digital prescription instructions were different from doctor notes."
+            document.getElementById('opt-5').innerHTML = "The digital prescription dosage was different from doctor notes."
+            document.getElementById('opt-6').innerHTML = "I can't view or download my digital prescription."
+            document.getElementById('opt-7').innerHTML = "I need instructions for the medicines prescribed."
+            document.getElementById('opt-8').innerHTML = "I need more medicine quantity than what is stated on my digital prescription."
+            document.getElementById('opt-9').innerHTML = "I can't redeem my prescription."
+            let x = document.getElementById('language');
+            x.setAttribute("value", "en");
+        }
+
+        if (name && mobile && email && issue && consultationid) {
+            let n = document.getElementById('name');
+            let m = document.getElementById('mobile');
+            let e = document.getElementById('email');
+            let c = document.getElementById('issue');
+            let o = document.getElementById('consultationid');
+            let a = document.getElementById('allergy')
+            let s = document.getElementById('submit');
+            n.setAttribute("type", "hidden");
+            m.setAttribute("type", "hidden");
+            e.setAttribute("type", "hidden");
+            o.setAttribute("type", "hidden");
+            c.hidden = true;
+            a.hidden = true;
+            s.style.visibility = "hidden";
+            document.getElementById('rname').innerHTML = name;
+            document.getElementById('rmobile').innerHTML = mobile;
+            document.getElementById('remail').innerHTML = email;
+            document.getElementById('rissue').innerHTML = issue;
+            document.getElementById('rallergy').innerHTML = "";
+            document.getElementById('rconsultationid').innerHTML = consultationid;
+            n.setAttribute("value", name);
+            m.setAttribute("value", mobile);
+            e.setAttribute("value", email);
+            c.setAttribute("value", issue);
+            o.setAttribute("value", consultationid);
+            a.setAttribute("value", allergy);
+            let sendData = { name, mobile, email, issue, consultationid }
+            if (issue == "Saya alergi terhadap obat yang diresepkan." || issue == "I'm allergic to the medicines prescribed.") {
+                document.getElementById('rallergy').innerHTML = allergy;
+                sendData.allergy = allergy
+            }
+            myFunction(sendData)
+        }
+
+        function myFunction(sendData) {
+            console.log(sendData)
+            let data = btoa(JSON.stringify(sendData))
+            window.parent.postMessage(JSON.stringify({
+                event_code: "ym-client-event",
+                data: JSON.stringify({
+                    event: {
+                        code: new Date().getTime().toString(),
+                        data
+                    },
+                }),
+            }), "*");
+
+            console.log(JSON.stringify({
+                event_code: "ym-client-event",
+                data: JSON.stringify({
+                    event: {
+                        code: new Date().getTime().toString(),
+                        data
+                    },
+                }),
+            }))
+
+
+        };
+
+        // document.getElementById("submit").addEventListener("click", myFunction());
+
+
+    </script>
+</body>
