@@ -1,0 +1,212 @@
+<Html>
+
+  <head>
+    <title>
+  
+    </title>
+  </head>
+  <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+  
+  <body style="background-color:#EEEEEE; ">
+    <style>
+      body {
+        font-family: 'Inter';
+      }
+  
+      input {
+        height: 2em;
+        width: 20em;
+        vertical-align: middle;
+      }
+  
+      label {
+        color: black;
+      }
+  
+      p {
+        text-align: justify
+      }
+  
+      .container {
+        width: 220px;
+        background-color: #EEEEEE;
+        font-size: 12px;
+        text-align: left;
+      }
+  
+      .input {
+        margin: 5px 0px;
+        padding: 15px 10px;
+        border: none;
+        border: none;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 5px;
+        border: 1px solid #EEEEEE;
+        outline: 0;
+        height: 25px;
+        width: 220px;
+        font-size: 12px;
+      }
+  
+      .input:focus {
+        border: 1px solid #DD0150;
+      }
+  
+      .submit {
+        background-color: #DD0150;
+        padding: 15px 15px 15px 15px;
+        width: 220px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        border: none;
+        color: white;
+        height: 45px;
+      }
+  
+      .submit:hover {
+        background-color: #f74586;
+      }
+  
+      .result {
+        font-weight: bold;
+        margin: 10px 0px 20px;
+      }
+    </style>
+    <center>
+  
+  
+      <div class="container">
+        <label id="header"></label> <br>
+        <br>
+  
+        <form>
+          <label id="lmobile"></label> <Br>
+          <input class="input" id="mobile" type="tel"
+            pattern="(\+62 ((\d{3}([ -]\d{3,})([- ]\d{4,})?)|(\d+)))|(\(\d+\) \d+)|\d{3}( \d+)+|(\d+[ -]\d+)|\d+"
+            name="mobile" size="15" value="" />
+          <div id="rmobile" class="result"></div>
+  
+  
+          <label id="lemail"></label> <Br>
+          <input class="input" id="email" type="email" value="" name="email" size="15" />
+          <div id="remail" class="result"></div>
+  
+  
+          <label id="lcontext"></label><br>
+          <input class="input" id="context" type="text" name="context" value=""/>
+          <div id="rcontext" class="result"></div>
+  
+  
+          <input type="hidden" id="language" name="language" value="id" />
+          <input type="hidden" id="vcontext" name="lcontext" value=""/>
+          <button id="submit" class="submit"></button>
+        </form>
+  
+      </div>
+  
+  
+    </center>
+    <script type="text/javascript">
+  
+      // $(document).ready(function () {
+      let params = new URLSearchParams(window.location.search)
+      // console.log(params.get('language'))
+      var lcontext = params.get('lcontext')
+      var language = params.get('language')
+      var mobile = params.get('mobile')
+      var email = params.get('email')
+      var context = params.get('context')
+      var mincontext = params.get('mincontext')
+     
+      console.log({ context, language });
+      document.getElementById('lcontext').innerHTML = lcontext;
+      let x = document.getElementById('vcontext');
+      let y = document.getElementById('context');
+      x.setAttribute("value", lcontext);
+      if (parseInt(mincontext)) {
+        y.setAttribute("minlength", `${mincontext}`);
+        language == "id" ? y.setAttribute("oninvalid", `this.setCustomValidity('Minimum ${mincontext} karakter')`) : y.setAttribute("oninvalid", `this.setCustomValidity('${mincontext} characters minimum')`)
+        y.setAttribute("oninput", "setCustomValidity('')");
+      } 
+      
+      if (language == 'id') {
+        document.getElementById('mobile').placeholder = 'Nomor telepon yang terdaftar';
+        document.getElementById('email').placeholder = 'Email aktif';
+        document.getElementById('header').innerHTML = 'Silakan berikan infomasi berikut dan tim CS kami akan segera menghubungimu kembali.';
+        document.getElementById('lmobile').innerHTML = 'No. Telepon Terdaftar';
+        document.getElementById('lemail').innerHTML = 'Email Aktif';
+        document.getElementById('submit').innerHTML = 'Kirim Tiket';
+        let x = document.getElementById('language');
+        x.setAttribute("value", "id");
+      } else {
+        document.getElementById('mobile').placeholder = 'Enter your registered mobile number';
+        document.getElementById('email').placeholder = 'Enter your active email ID';
+        document.getElementById('header').innerHTML = 'Please share the information below and our CS team will get back to you at the soonest.';
+        document.getElementById('lmobile').innerHTML = 'Registered Mobile Number';
+        document.getElementById('lemail').innerHTML = 'Active Email ID';
+        document.getElementById('submit').innerHTML = 'Confirm';
+        let x = document.getElementById('language');
+        x.setAttribute("value", "en");
+      }
+  
+      if (mobile && email && context) {
+        let m = document.getElementById('mobile');
+        let e = document.getElementById('email');
+        let c = document.getElementById('context');
+        let s = document.getElementById('submit');
+        m.setAttribute("type", "hidden");
+        e.setAttribute("type", "hidden");
+        c.setAttribute("type", "hidden");
+        s.style.visibility = "hidden";
+        document.getElementById('rmobile').innerHTML = mobile;
+        document.getElementById('remail').innerHTML = email;
+        document.getElementById('rcontext').innerHTML = context;
+        m.setAttribute("value", mobile);
+        e.setAttribute("value", email);
+        c.setAttribute("value", context);
+        myFunction()
+      }
+  
+  
+  
+  
+      // });
+      function myFunction() {
+        var mobile = document.getElementById("mobile").value;
+        var email = document.getElementById("email").value;
+        var context = document.getElementById("context").value;
+        console.log({ mobile, email, context })
+        //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
+        let data = btoa(JSON.stringify({ mobile, email, context }))
+        if (mobile && email && context) {
+          window.parent.postMessage(JSON.stringify({
+            event_code: "ym-client-event",
+            data: JSON.stringify({
+              event: {
+                code: new Date().getTime().toString(),
+                data
+              },
+            }),
+          }), "*");
+  
+          console.log(JSON.stringify({
+            event_code: "ym-client-event",
+            data: JSON.stringify({
+              event: {
+                code: new Date().getTime().toString(),
+                data
+              },
+            }),
+          }))
+        }
+  
+  
+      };
+  
+      // document.getElementById("submit").addEventListener("click", myFunction());
+  
+  
+    </script>
+  </body>

@@ -246,7 +246,7 @@
             c.setAttribute("value", issue);
             o.setAttribute("value", consultationid);
             a.setAttribute("value", allergy);
-            let sendData = { name, mobile, email, issue, consultationid }
+            let sendData = { name, mobile, email, consultationid, issue }
             if (issue == "Saya alergi terhadap obat yang diresepkan." || issue == "I'm allergic to the medicines prescribed.") {
                 document.getElementById('rallergy').innerHTML = allergy;
                 sendData.allergy = allergy
