@@ -219,7 +219,7 @@
     // });
     function myFunction(args) {
       //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
-      let data = btoa(JSON.stringify(args))
+      let data = JSON.stringify(args)
       if (args.rating) {
         window.parent.postMessage(JSON.stringify({
           event_code: "ym-client-event",
