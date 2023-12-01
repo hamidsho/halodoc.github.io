@@ -231,7 +231,7 @@
             // var amount = document.getElementById("amount").value;
             console.log({ mobile, email, context, amount })
             //console.log(canvas+canvas1+canvas2+canvas3+canvas4)
-            let data = btoa(JSON.stringify({ mobile, email, context, amount }))
+            let data = JSON.stringify({ mobile, email, context, amount })
             if (mobile && email && context) {
                 window.parent.postMessage(JSON.stringify({
                     event_code: "ym-client-event",
