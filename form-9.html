@@ -258,7 +258,7 @@
     
             function myFunction(sendData) {
                 console.log(sendData)
-                let data = btoa(JSON.stringify(sendData))
+                let data = JSON.stringify(sendData)
                 window.parent.postMessage(JSON.stringify({
                     event_code: "ym-client-event",
                     data: JSON.stringify({
